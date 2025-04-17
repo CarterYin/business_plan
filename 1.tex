@@ -1,0 +1,1562 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% ------------------------------------------------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+
+% 本文特殊宏包
+\usepackage{siunitx} % 埃米单位
+
+% 本 .tex 专属的宏定义
+    \def\V{\ \mathrm{V}}
+    \def\mV{\ \mathrm{mV}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\A{\ \mathrm{A}}
+    \def\mA{\ \mathrm{mA}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\O{\ \Omega}
+    \def\mO{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
+
+% 自定义宏定义
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    \def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\Im{\mathrm{Im\,}}
+    \def\Re{\mathrm{Re\,}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
+
+% 导入基本宏包
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    % \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    % \hypersetup{
+    %     colorlinks=true,    % false:边框链接 ; true:彩色链接
+    %     citecolor={blue},    % 文献引用颜色
+    %     linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+    %     urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+    %     % cyan 浅蓝色 
+    %     % magenta 洋红色
+    %     % yellow 黄色
+    %     % black 黑色
+    %     % white 白色
+    %     % red 红色
+    %     % green 绿色
+    %     % blue 蓝色
+    %     % gray 灰色
+    %     % darkgray 深灰色
+    %     % lightgray 浅灰色
+    %     % brown 棕色
+    %     % lime 石灰色
+    %     % olive 橄榄色
+    %     % orange 橙色
+    %     % pink 粉红色
+    %     % purple 紫色
+    %     % teal 蓝绿色
+    %     % violet 紫罗兰色
+    % }
+
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号
+    \usepackage{multicol}   % 宏包：支持多栏 
+    \usepackage{graphicx}   % 宏包：插入图片
+    \usepackage{float}      % 宏包：设置图片浮动位置
+    %\usepackage{article}    % 宏包：使文本排版更加优美
+    \usepackage{tikz}       % 宏包：绘图工具
+    \usepackage{tikz-qtree} % 宏包：树形图
+    \usepackage{tikz-dependency} % 宏包：依赖图
+    \usepackage{pgfplots}   % 宏包：绘图工具
+    \usepackage{enumerate}  % 宏包：列表环境设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+
+% 文章页面margin设置
+    \usepackage[a4paper]{geometry}
+        \geometry{top=1in}
+        \geometry{bottom=1in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% 定义 solution 环境
+\usepackage{amsthm}
+\newtheorem{solution}{Solution}
+        \geometry{bottom=1in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% 配置数学环境
+    \usepackage{amsthm} % 宏包：数学环境配置
+    % theorem-line 环境自定义
+        \newtheoremstyle{MyLineTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{LineTheorem}{Theorem.\,}
+    % theorem-block 环境自定义
+        \newtheoremstyle{MyBlockTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
+    % definition 环境自定义
+        \newtheoremstyle{MySubsubsectionStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+           % {：\\ \indent}% <punctuation after theorem head>
+            {\\\indent}
+            {0pt}% <space after theorem head>
+            {\textbf{#3}}% 设置标题内容顺序
+        \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+        \newtheorem{definition}{}
+
+%宏包：有色文本框（proof环境）及其设置
+    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+    \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+    \usepackage{framed}     % 实现方框效果
+        \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+        \newenvironment{graybox}{%
+        \def\FrameCommand{%
+        \hspace{1pt}%
+        {\color{gray}\small \vrule width 2pt}%
+        {\color{graybox_color}\vrule width 4pt}%
+        \colorbox{graybox_color}%
+        }%
+        \MakeFramed{\advance\hsize-\width\FrameRestore}%
+        \noindent\hspace{-4.55pt}% disable indenting first paragraph
+        \begin{adjustwidth}{}{7pt}%
+        \vspace{2pt}\vspace{2pt}%
+        }
+        {%
+        \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+        }
+
+
+
+% 外源代码插入设置
+    % matlab 代码插入设置
+    \usepackage{matlab-prettifier}
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
+    \usepackage[most]{tcolorbox} % 引入tcolorbox包 
+    \usepackage{listings} % 引入listings包
+        \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+        }
+        \newtcblisting{matlablisting}{
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
+            top=0pt,
+            bottom=0pt,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
+            breakable,
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
+        }
+
+
+
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    %\usepackage{tabularray} % 宏包：表格排版
+    %\usepackage{longtable}  % 宏包：长表格
+    %\usepackage[longtable]{multirow} % 宏包：multi 行列
+
+
+% figure 设置
+\usepackage{graphicx}   % 支持 jpg, png, eps, pdf 图片 
+\usepackage{float}      % 支持 H 选项
+\usepackage{svg}        % 支持 svg 图片
+\usepackage{subcaption} % 支持子图
+\svgsetup{
+        % 指向 inkscape.exe 的路径
+       inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+        % 一定程度上修复导入后图片文字溢出几何图形的问题
+       inkscapelatex = false                 
+   }
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
+    \usepackage{float}     % 图表位置浮动设置 
+        % \floatstyle{plaintop} % 设置表格标题在表格上方
+        % \restylefloat{table}  % 应用设置
+
+
+% 圆圈序号自定义
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{
+            label=\bfseries(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
+
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{STKaiti}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{STKaiti} % 设置加粗字体为 STKaiti 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+
+% 其它设置
+    % 脚注设置
+    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{摘要}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
+
+
+% 各级标题自定义设置
+    \usepackage{titlesec}   
+    % chapter
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Part \thechapter }{10pt}{}
+        \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
+    % section
+        \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
+    % subsection
+        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+    % subsubsection
+        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+
+
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% ------------------------------------------------------------- %
+
+
+
+% ----------------------------------------------------------- %
+% >> --------------------- 文章信息区 --------------------- << %
+% 页眉页脚设置
+
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+    \pagestyle{fancy}
+    \fancyhf{}
+    \cfoot{\thepage}
+    \renewcommand\headrulewidth{1pt}
+    \renewcommand\footrulewidth{0pt}
+    \chead{智能温控服装创业计划书}
+    \lhead{Business Plan}
+    \rhead{yinchao23@mails.ucas.ac.cn}
+
+%文档信息设置
+\title{\Huge 智能温控服装创业计划书}
+\author{\Large 尹超\hspace{1em}许书闻\hspace{1em}孙弈飞\hspace{1em}石禹\hspace{1em}王湑\hspace{1em}徐子谦\\ \normalsize 中国科学院大学，北京 100049 \\ \normalsize University of Chinese Academy of Sciences, Beijing 100049, China}
+\date{\normalsize 2025.4.30} % 日期
+% >> --------------------- 文章信息区 --------------------- << %
+% ----------------------------------------------------------- %     
+
+
+% 开始编辑文章
+
+\begin{document}
+\zihao{5}           % 设置全文字号大小
+
+% --------------------------------------------------------------- %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+    \maketitle\newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+    \begin{cnabstract}\normalsize 
+        本创业计划书提出了一种创新的智能温控服装，利用受鱿鱼皮肤启发的先进材料技术，满足消费者在多变温度环境下的舒适需求。目标市场为户外爱好者、运动员及日常消费者，预计2024年全球智能服装市场规模达51.6亿美元，其中温控服装约占10.3亿美元，到2030年增长至43亿美元。商业模式以直销为主，结合品牌建设和零售合作，首年目标收入1030万美元。本计划书涵盖商机分析、产品描述、环境分析、战略规划、营销策略、生产运营、管理、财务及风险管理，旨在展示这是一个高潜力、可复制的创业机会。\par
+
+            \begin{center}
+                \textbf{\large 小组成员与分工}
+                
+                \vspace{0.5em}
+                \begin{tabular}{|l|p{8cm}|}
+                \hline
+                \multicolumn{2}{|c|}{\textbf{团队成员}} \\
+                \hline
+                \textbf{组长} & 尹超 \\
+                \hline
+                \textbf{组员} & 许书闻、石禹、孙弈飞、王湑、徐子谦 \\
+                \hline
+                \multicolumn{2}{|c|}{\textbf{任务分工}} \\
+                \hline
+                \textbf{创业计划书撰写} & 尹超、孙弈飞 \\
+                \hline
+                \textbf{路演PPT制作} & 许书闻、王湑、徐子谦 \\
+                \hline
+                \textbf{路演演讲} & 石禹 \\
+                \hline
+                \end{tabular}
+                \end{center}
+    \end{cnabstract}
+    \addcontentsline{toc}{chapter}{摘要} % 手动添加为目录
+
+% % 不换页目录
+%     \setcounter{tocdepth}{0}
+%     \noindent\rule{\textwidth}{0.1em}   % 分割线
+%     \noindent\begin{minipage}{\textwidth}\centering 
+%         \vspace{1cm}
+%         \tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等   
+%     \end{minipage}  
+%     \addcontentsline{toc}{chapter}{目录} % 手动添加为目录
+
+% 目录
+\setcounter{tocdepth}{4}                % 目录深度（为1时显示到section）
+\tableofcontents                        % 目录页
+\addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
+\thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+    \newpage    
+    \pagenumbering{arabic} 
+
+% >> --------------------- 封面序言与目录 --------------------- << %
+% --------------------------------------------------------------- %
+
+
+
+% Main content
+\newpage
+\chapter{创业机会描述}
+\section{商机来源}
+消费者在极端或多变温度环境中（如户外运动、极端天气）对舒适服装的需求未被充分满足。传统服装需通过增减层数调节温度，操作繁琐且效率低。智能温控服装通过自动调节热量，提供无缝舒适体验，填补市场空白。例如，滑雪者需在寒冷山顶和温暖山谷间频繁调整衣物，而我们的产品可自动适应温度变化，减少不便。
+
+\section{创意来源}
+创意源于自然界的生物启发设计，特别是鱿鱼皮肤的动态热调节能力（\url{https://www.sciencedaily.com/releases/2024/10/241001114730.htm}）。鱿鱼通过皮肤中的色素细胞调节光反射，我们将此原理应用于纺织品，开发出无需电池的热调节织物。这种生物仿生方法结合材料科学，创造出独特的功能性服装。
+
+\section{商业模式}
+\begin{itemize}
+    \item \textbf{直销模式}：通过自有电商平台销售高端智能温控服装，定价约200美元/件，目标消费者为注重性能的中高端市场。
+    \item \textbf{零售合作}：与户外品牌（如Patagonia）和运动品牌（如Under Armour）合作，扩大市场覆盖。
+    \item \textbf{技术授权}：长期考虑将技术授权给大型服装制造商，获取许可费。
+    \item \textbf{收入来源}：初期以产品销售为主，未来探索数据服务（如健康监测）或订阅模式。
+    \item \textbf{成本结构}：研发占总成本50\%，生产30\%，营销20\%。
+\end{itemize}
+
+\section{市场估算}
+根据\url{https://www.grandviewresearch.com/industry-analysis/smart-clothing-market-report}，全球智能服装市场2024年规模为51.6亿美元，预计以26.2\%的年复合增长率增长至2030年的214.8亿美元。假设温控服装占20\%，2024年市场规模约10.3亿美元，2030年达43亿美元。首年目标捕获0.1\%市场，即1030万美元，约销售5.15万件。
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{年份} & \textbf{智能服装市场规模（亿美元）} & \textbf{温控服装市场规模（亿美元）} & \textbf{目标市场份额} & \textbf{预计收入（万美元）} \\
+        \hline
+        2024 & 51.6 & 10.3 & 0.1\% & 1030 \\
+        \hline
+        2025 & 67.0 & 13.4 & 0.2\% & 2680 \\
+        \hline
+        2030 & 214.8 & 43.0 & 0.5\% & 10750 \\
+        \hline
+    \end{tabular}
+    \caption{市场估算表}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    % 10% 市场占比
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=6cm,
+            title={温控市场占比: 10\%},
+            xlabel={年份},
+            ylabel={市场规模 (亿美元)},
+            xmin=2023.5, xmax=2030.5,
+            ymin=0, ymax=230,
+            xtick={2024,2025,2030},
+            legend pos=north west,
+            ymajorgrids=true,
+            grid style=dashed,
+            legend style={font=\tiny},
+        ]
+        
+        % 智能服装市场规模
+        \addplot[color=blue, mark=o, line width=1.5pt] coordinates {
+            (2024,51.6) (2025,67.0) (2030,214.8)
+        };
+        
+        % 温控服装市场规模 (10%占比)
+        \addplot[color=red, mark=square, line width=1.5pt] coordinates {
+            (2024,5.16) (2025,6.7) (2030,21.48)
+        };
+        
+        % 公司目标收入 (转换为亿美元以便在同一图表显示)
+        \addplot[color=green!60!black, mark=triangle, line width=1.5pt] coordinates {
+            (2024,0.103) (2025,0.268) (2030,1.075)
+        };
+        
+        \legend{智能服装市场,温控服装市场,公司目标收入};
+        \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    \hfill
+    % 20% 市场占比（预期情景）
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=6cm,
+            title={温控市场占比: 20\% (预期)},
+            xlabel={年份},
+            ylabel={市场规模 (亿美元)},
+            xmin=2023.5, xmax=2030.5,
+            ymin=0, ymax=230,
+            xtick={2024,2025,2030},
+            legend pos=north west,
+            ymajorgrids=true,
+            grid style=dashed,
+            legend style={font=\tiny},
+        ]
+        
+        % 智能服装市场规模
+        \addplot[color=blue, mark=o, line width=1.5pt] coordinates {
+            (2024,51.6) (2025,67.0) (2030,214.8)
+        };
+        
+        % 温控服装市场规模 (20%占比)
+        \addplot[color=red, mark=square, line width=1.5pt] coordinates {
+            (2024,10.32) (2025,13.4) (2030,42.96)
+        };
+        
+        % 公司目标收入 (转换为亿美元以便在同一图表显示)
+        \addplot[color=green!60!black, mark=triangle, line width=1.5pt] coordinates {
+            (2024,0.103) (2025,0.268) (2030,1.075)
+        };
+        
+        \legend{智能服装市场,温控服装市场,公司目标收入};
+        \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    
+    % 30% 市场占比（乐观情景）
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=6cm,
+            title={温控市场占比: 30\% (乐观)},
+            xlabel={年份},
+            ylabel={市场规模 (亿美元)},
+            xmin=2023.5, xmax=2030.5,
+            ymin=0, ymax=230,
+            xtick={2024,2025,2030},
+            legend pos=north west,
+            ymajorgrids=true,
+            grid style=dashed,
+            legend style={font=\tiny},
+        ]
+        
+        % 智能服装市场规模
+        \addplot[color=blue, mark=o, line width=1.5pt] coordinates {
+            (2024,51.6) (2025,67.0) (2030,214.8)
+        };
+        
+        % 温控服装市场规模 (30%占比)
+        \addplot[color=red, mark=square, line width=1.5pt] coordinates {
+            (2024,15.48) (2025,20.1) (2030,64.44)
+        };
+        
+        % 公司目标收入 (转换为亿美元以便在同一图表显示)
+        \addplot[color=green!60!black, mark=triangle, line width=1.5pt] coordinates {
+            (2024,0.103) (2025,0.268) (2030,1.075)
+        };
+        
+        \legend{智能服装市场,温控服装市场,公司目标收入};
+        \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    \caption{不同温控市场占比情景下的市场规模与预测收入分析}
+    \end{figure}
+
+\section{需求满足}
+产品通过自动调节温度（15°C-35°C），满足户外运动、极端天气和日常通勤中的舒适需求。其设计可复制，适用于夹克、衬衫、裤子等多种服装类型，通过标准化生产实现规模化。消费者可通过拉伸服装（如调整袖口或腰部）控制热量释放，操作简单直观。
+
+\section{首创说明}
+以往温控服装受限于电池依赖、重量大或成本高，未能广泛普及。例如，Ministry of Supply的加热垫技术需外部电源，限制了便携性。我们的无电池、轻量级技术突破了这些限制，基于加州大学尔湾分校的最新研究（\url{https://doi.org/10.1063/5.0169558}），现为进入市场的理想时机。
+
+\chapter{产品描述}
+\section{目标市场}
+\begin{itemize}
+    \item \textbf{初期}：户外爱好者（登山、滑雪）、运动员（跑步、自行车）、极端天气地区居民（如北欧、加拿大）。
+    \item \textbf{长期}：日常消费者，追求舒适与科技感的都市人群（25-45岁，中高收入）。
+    \item \textbf{细分市场}：
+        \begin{itemize}
+            \item 户外活动：需适应多变温度的消费者。
+            \item 运动健身：注重性能和舒适的运动员。
+            \item 日常通勤：在冷热交替环境中寻求便利的都市白领。
+        \end{itemize}
+\end{itemize}
+
+\section{产品定义}
+智能温控服装是一类嵌入先进材料的服装，能自动调节温度，保持穿者舒适。产品属于智能纺织品品类，结合时尚与功能性，适用于多种场景。
+
+\section{核心产品}
+核心利益是提供无缝温度调节，增强穿者在多变环境中的舒适度和表现力。例如，跑步者在寒冷早晨无需额外保暖层，服装可自动保留体热；炎热午后则释放多余热量。
+
+\section{产品描述}
+\begin{itemize}
+    \item \textbf{形态}：包括夹克、衬衫、裤子等，设计时尚，适合户外、运动和日常穿着。
+    \item \textbf{功能}：
+        \begin{itemize}
+            \item 秒级响应温度变化（15°C-35°C）。
+            \item 透气性与棉织物相当。
+            \item 可机洗，耐用性高。
+        \end{itemize}
+    \item \textbf{价值}：
+        \begin{itemize}
+            \item 提升舒适度，减少换装麻烦。
+            \item 节能环保，减少空调或加热器使用。
+            \item 时尚与功能兼备，满足消费者审美需求。
+        \end{itemize}
+\end{itemize}
+
+\textbf{技术原理}：服装采用聚合物基底嵌入铜岛的复合材料，通过拉伸分离铜岛，改变红外光传输和反射，从而调节热量（\url{https://www.sciencedaily.com/releases/2024/10/241001114730.htm}）。用户可通过拉伸袖口或腰部等设计元素手动调整温度。
+
+\section{产品创新}
+产品基于加州大学尔湾分校的生物启发研究（\url{https://doi.org/10.1063/5.0169558}），采用无电池热调节技术，区别于依赖电池的加热垫（如Ministry of Supply）或仅限冷却的聚合物（如HeiQ Smart Temp）。其创新点包括：
+\begin{itemize}
+    \item \textbf{无外部电源}：降低重量和维护成本。
+    \item \textbf{双向调节}：同时支持保暖和散热。
+    \item \textbf{可持续性}：减少电池使用，符合环保趋势。
+\end{itemize}
+
+\section{竞争优势}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{竞争者} & \textbf{技术} & \textbf{优势} & \textbf{劣势} \\
+        \hline
+        37.5 Technology & 天然矿物 & 可持续，广泛应用 & 仅限冷却 \\
+        \hline
+        HeiQ Smart Temp & 聚合物冷却 & 动态蒸发，适合运动 & 需水分触发 \\
+        \hline
+        Ministry of Supply & 相变材料 & 精准控温，商务适用 & 依赖电池，重量较大 \\
+        \hline
+        我们的产品 & 聚合物-铜岛 & 无电池，双向调节，透气可洗 & 初期成本较高 \\
+        \hline
+    \end{tabular}
+    \caption{竞争优势比较}
+\end{table}
+我们的产品在便携性、可持续性和多场景适用性上具有显著优势。
+
+\section{技术含量}
+技术基于加州大学尔湾分校的研究（\url{https://doi.org/10.1063/5.0169558}），通过傅里叶变换红外光谱和出汗保护热板测试验证其性能。材料成熟度高，已完成实验室测试，未来需优化生产工艺以降低成本。团队计划申请专利，保护核心技术。
+
+\section{产品生产}
+\begin{itemize}
+    \item \textbf{自制}：核心热调节材料的研发与小规模生产。
+    \item \textbf{外包}：服装裁剪、缝制等交由专业纺织制造商。
+    \item \textbf{策略联盟}：与材料供应商（如聚合物生产商）和零售商建立合作。
+    \item \textbf{生产流程}：
+        \begin{enumerate}
+            \item 材料研发：实验室合成聚合物-铜岛复合材料。
+            \item 纺织整合：将材料嵌入纺织品，确保透气性和耐用性。
+            \item 服装制造：设计和生产成品服装。
+            \item 质量控制：测试温度调节性能和耐用性。
+        \end{enumerate}
+\end{itemize}
+
+\chapter{环境分析}
+\section{宏观环境分析（PEST）}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{因素} & \textbf{描述} & \textbf{对企业的影响} \\
+        \hline
+        \textbf{政治} & 智能纺织品需符合安全与环保法规 & 需确保合规，增加认证成本 \\
+        \hline
+        \textbf{经济} & 消费者对高端服装的支出增加 & 有利于高端定位，但需关注经济波动 \\
+        \hline
+        \textbf{社会} & 健康与可持续性意识增强 & 推动智能服装需求，需强调环保 \\
+        \hline
+        \textbf{技术} & 材料科学与可穿戴技术进步 & 提供技术支持，但需持续研发 \\
+        \hline
+    \end{tabular}
+    \caption{PEST分析}
+\end{table}
+
+\begin{tikzpicture}[node distance=2cm, auto,
+    factor/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=2cm, minimum width=5cm, align=center, font=\small\bfseries},
+    desc/.style={rectangle, draw, fill=gray!10, rounded corners, minimum height=2.5cm, minimum width=5cm, align=center, font=\small, text width=4.8cm}]
+    
+    % PEST Title
+    \node[align=center, font=\Large\bfseries] (title) {PEST分析};
+    
+    % Factors
+    \node[factor, below left=1cm and 2.5cm of title] (P) {政治因素};
+    \node[factor, below right=1cm and 2.5cm of title] (E) {经济因素};
+    \node[factor, below=3.5cm of P] (S) {社会因素};
+    \node[factor, below=3.5cm of E] (T) {技术因素};
+    
+    % Descriptions
+    \node[desc, below=0.5cm of P] (Pdesc) {智能纺织品需符合安全与环保法规\\需确保合规，增加认证成本};
+    \node[desc, below=0.5cm of E] (Edesc) {消费者对高端服装的支出增加\\有利于高端定位，但需关注经济波动};
+    \node[desc, below=0.5cm of S] (Sdesc) {健康与可持续性意识增强\\推动智能服装需求，需强调环保};
+    \node[desc, below=0.5cm of T] (Tdesc) {材料科学与可穿戴技术进步\\提供技术支持，但需持续研发};
+    
+  \end{tikzpicture}
+
+\noindent\textbf{详细分析}：
+\begin{itemize}[itemsep=1ex, leftmargin=*]
+  \item \textbf{政治}：各国对纺织品的安全和环保要求严格，如欧盟的REACH法规。企业需通过认证，确保产品符合标准。
+  \item \textbf{经济}：全球中产阶级增长推动高端服装消费，但经济衰退可能影响购买力。
+  \item \textbf{社会}：消费者越来越关注健康和环保，智能服装的舒适性和可持续性成为购买驱动因素。
+  \item \textbf{技术}：材料科学的进步（如纳米技术和生物启发设计）为产品开发提供了基础，但技术迭代快，需持续投资研发。
+\end{itemize}
+
+\section{行业环境分析（波特五力模型）}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{力量} & \textbf{强度} & \textbf{描述} \\
+        \hline
+        新进入者威胁 & 中高 & 技术壁垒降低，新进入者增加，需通过专利保护 \\
+        \hline
+        供应商议价能力 & 中等 & 依赖特种材料供应商，需多元化供应链 \\
+        \hline
+        买家议价能力 & 中等 & 消费者有多种选择，但高端市场忠诚度高 \\
+        \hline
+        替代品威胁 & 中等 & 传统服装或普通智能服装为替代品 \\
+        \hline
+        行业竞争 & 激烈 & 众多品牌竞争，需差异化定位 \\
+        \hline
+    \end{tabular}
+    \caption{波特五力分析}
+\end{table}
+
+\begin{tikzpicture}[node distance=4cm, auto,
+    force/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=1.5cm, minimum width=4cm, align=center, font=\small\bfseries},
+    desc/.style={font=\tiny, align=center, text width=3.8cm},
+    arrow/.style={->, >=latex, line width=1.5pt}]
+    
+    % Central node
+    \node[force, fill=red!20] (central) {行业竞争\\(激烈)};
+    
+    % Five forces
+    \node[force, above=3cm of central] (new) {新进入者威胁\\(中高)};
+    \node[force, left=3cm of central] (supplier) {供应商议价能力\\(中等)};
+    \node[force, right=3cm of central] (buyer) {买家议价能力\\(中等)};
+    \node[force, below=3cm of central] (substitute) {替代品威胁\\(中等)};
+    
+    % Force descriptions
+    \node[desc, below=0.2cm of new] {技术壁垒降低，新进入者增加，\\需通过专利保护};
+    \node[desc, below=0.2cm of supplier] {依赖特种材料供应商，\\需多元化供应链};
+    \node[desc, below=0.2cm of buyer] {消费者有多种选择，\\但高端市场忠诚度高};
+    \node[desc, above=0.2cm of substitute] {传统服装或普通智能服装为替代品};
+    \node[desc, below=0.2cm of central] {众多品牌竞争，需差异化定位};
+    
+    % Arrows
+    \draw[arrow] (new) -- (central);
+    \draw[arrow] (supplier) -- (central);
+    \draw[arrow] (buyer) -- (central);
+    \draw[arrow] (substitute) -- (central);
+    
+  \end{tikzpicture}
+
+\noindent\textbf{分析}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{新进入者}：智能服装技术逐渐普及，初创公司和传统服装品牌可能进入市场。专利和品牌建设是关键防御。
+  \item \textbf{供应商}：特种聚合物和铜材料供应商有限，需建立长期合作关系。
+  \item \textbf{买家}：消费者对价格敏感，但高端消费者更注重功能和品牌。
+  \item \textbf{替代品}：传统保暖或冷却服装成本低，但功能有限。
+  \item \textbf{竞争}：与37.5 Technology、HeiQ等竞争，需通过技术领先和品牌差异化脱颖而出。
+\end{itemize}
+
+\section{市场分析}
+\begin{itemize}
+    \item \textbf{客户群体}：25-45岁，注重健康与科技，收入中高，居住在城市或极端气候地区。
+    \item \textbf{需求}：舒适、功能性、时尚、可持续性。
+    \item \textbf{购买力}：高端消费者愿意为技术支付溢价，平均愿意花费150-300美元。
+    \item \textbf{购买方式}：线上为主（电商平台、品牌官网），线下通过高端零售店（如REI）。
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{消费者行为}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{决策因素}：产品质量、品牌声誉、技术创新。
+  \item \textbf{购买渠道}：偏好便捷的线上购物，但线下试穿仍重要。
+  \item \textbf{信息来源}：社交媒体、KOL推荐、专业评测。
+\end{itemize}
+
+\section{竞争分析}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{竞争者} & \textbf{技术} & \textbf{市场定位} & \textbf{优势} & \textbf{劣势} \\
+        \hline
+        37.5 Technology & 天然矿物 & 运动、户外 & 可持续，广泛合作 & 仅限冷却 \\
+        \hline
+        HeiQ Smart Temp & 聚合物 & 运动、贴身衣物 & 动态冷却 & 需水分触发 \\
+        \hline
+        Ministry of Supply & 相变材料 & 商务 & 精准控温 & 电池依赖 \\
+        \hline
+        Under Armour & 冷却织物 & 运动 & 品牌知名度 & 技术单一 \\
+        \hline
+    \end{tabular}
+    \caption{竞争分析}
+\end{table}
+
+\noindent\textbf{竞争策略}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{37.5 Technology}：通过环保和广泛品牌合作占据市场，但调节范围有限。
+  \item \textbf{HeiQ Smart Temp}：专注于运动市场，需改进保暖功能。
+  \item \textbf{Ministry of Supply}：商务定位限制了户外市场，电池依赖降低便携性。
+  \item \textbf{我们的优势}：无电池、双向调节、透气可洗，适合多场景。
+\end{itemize}
+
+\section{企业自身分析}
+\begin{itemize}
+    \item \textbf{优势}：
+        \begin{itemize}
+            \item 团队具备材料科学和工程背景，研发能力强。
+            \item 技术领先，基于最新研究成果。
+        \end{itemize}
+    \item \textbf{劣势}：
+        \begin{itemize}
+            \item 品牌知名度低，需大量营销投入。
+            \item 初期资金有限，依赖外部融资。
+        \end{itemize}
+    \item \textbf{改进计划}：
+        \begin{itemize}
+            \item 加强品牌建设，通过社交媒体和KOL合作提升知名度。
+            \item 寻求天使投资或风险投资，支持研发和市场推广。
+        \end{itemize}
+\end{itemize}
+
+\chapter{综合分析}
+\section{关键成功要素}
+\begin{itemize}
+    \item \textbf{技术创新}：持续研发，确保技术领先。
+    \item \textbf{产品质量}：确保舒适、耐用和功能性。
+    \item \textbf{品牌建设}：打造高端科技品牌形象。
+    \item \textbf{分销渠道}：建立高效的线上和线下网络。
+    \item \textbf{成本控制}：优化生产流程，降低单位成本。
+\end{itemize}
+
+\section{SWOT分析}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+         & \textbf{有利} & \textbf{不利} \\
+        \hline
+        \textbf{内部} & 先进技术、科研团队 & 高研发成本、品牌认知低 \\
+        \hline
+        \textbf{外部} & 市场增长、消费者需求 & 竞争激烈、技术迭代快 \\
+        \hline
+    \end{tabular}
+    \caption{SWOT分析}
+\end{table}
+
+\noindent\textbf{分析}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{优势}：技术创新和团队专业性为产品提供了核心竞争力。
+  \item \textbf{劣势}：新品牌需时间建立信任，初期成本高。
+  \item \textbf{机会}：智能服装市场快速增长，消费者对功能性服装需求增加。
+  \item \textbf{威胁}：大品牌进入市场可能加剧竞争，技术更新需持续投入。
+\end{itemize}
+
+\begin{tikzpicture}[
+    swotbox/.style={rectangle, rounded corners, draw, thick, fill=#1, 
+                text width=4cm, minimum height=2.5cm, 
+                align=left, font=\small}
+]
+
+% SWOT标题
+\node[font=\Large\bfseries] at (4.1,2) {SWOT分析};
+
+% 设置SWOT四个象限
+\node[swotbox=green!15] (S) at (0,0) {
+    \textbf{\large 优势}\\[0.1cm] 
+    \begin{itemize}[leftmargin=*, itemsep=0pt]
+      \item 先进技术、科研团队
+      \item 无电池双向温控系统
+      \item 生物仿生设计独特性
+    \end{itemize}
+};
+
+\node[swotbox=red!15] (W) at (8,0) {
+    \textbf{\large 劣势}\\[0.1cm]
+    \begin{itemize}[leftmargin=*, itemsep=0pt]
+      \item 高研发成本
+      \item 品牌认知低
+      \item 市场教育成本高
+    \end{itemize}
+};
+
+\node[swotbox=blue!15] (O) at (0,-3) {
+    \textbf{\large 机会}\\[0.1cm]
+    \begin{itemize}[leftmargin=*, itemsep=0pt]
+      \item 市场快速增长
+      \item 消费者需求增加
+      \item 健康与可持续性趋势
+    \end{itemize}
+};
+
+\node[swotbox=orange!15] (T) at (8,-3) {
+    \textbf{\large 威胁}\\[0.1cm]
+    \begin{itemize}[leftmargin=*, itemsep=0pt]
+      \item 竞争激烈
+      \item 技术迭代快
+      \item 经济波动影响高端消费
+    \end{itemize}
+};
+
+% 标签
+\node[font=\bfseries] at (-4,0) {内部因素};
+\node[font=\bfseries] at (-4,-3) {外部因素};
+\node[font=\bfseries] at (0,1.5) {有利因素};
+\node[font=\bfseries] at (8,1.5) {不利因素};
+
+% 加入分割线
+\draw[thick, ->] (-1.5,-1.5) -- (9.5,-1.5);
+\draw[thick, ->] (4,1) -- (4,-4.5);
+
+\end{tikzpicture}
+
+
+\chapter{企业战略}
+\section{战略理念}
+\begin{itemize}
+    \item \textbf{使命}：通过创新技术提供舒适、可持续的服装解决方案。
+    \item \textbf{愿景}：成为全球领先的智能温控服装品牌。
+    \item \textbf{价值观}：创新、环保、用户至上。
+\end{itemize}
+
+\section{战略定位}
+定位为高端智能温控服装品牌，服务追求性能、时尚和环保的消费者。产品强调技术领先和用户体验，区别于传统服装和低端智能服装。
+
+\section{战略目标}
+\begin{itemize}
+    \item \textbf{市场目标}：三年内捕获1\%温控服装市场（4300万美元）。
+    \item \textbf{组织目标}：建立50人团队，覆盖研发、生产、营销。
+    \item \textbf{业绩目标}：首年收入1030万美元，三年内达5000万。
+    \item \textbf{技术目标}：开发第二代材料，提升调节范围和成本效益。
+\end{itemize}
+
+\section{企业发展模式}
+\begin{itemize}
+    \item \textbf{初期（1-2年）}：线上直销，聚焦核心产品（夹克、衬衫）。
+    \item \textbf{中期（3-5年）}：扩展零售合作，推出多品类产品（裤子、配件）。
+    \item \textbf{长期（5年以上）}：技术授权，进入国际市场（如北美、欧洲）。
+\end{itemize}
+
+\section{企业竞争战略}
+采用差异化战略，通过技术领先、独特设计和环保特性脱颖而出。重点突出无电池、双向调节和可持续性，与竞争对手形成鲜明对比。
+
+\section{核心竞争力构建}
+\begin{itemize}
+    \item \textbf{技术专利}：申请热调节材料专利，保护知识产权。
+    \item \textbf{品牌形象}：通过社交媒体、户外活动赞助和KOL合作，打造科技与环保形象。
+    \item \textbf{供应链优化}：与优质供应商合作，确保材料质量和成本控制。
+    \item \textbf{持续研发}：投资于材料科学，开发更高效的温控技术。
+\end{itemize}
+
+\chapter{营销策划}
+\section{市场细分}
+\begin{itemize}
+    \item \textbf{按活动}：户外（登山、滑雪）、运动（跑步、健身）、日常通勤。
+    \item \textbf{按人群}：年轻人（25-35岁）、中产阶级、户外爱好者。
+    \item \textbf{按地区}：北美、欧洲、亚太地区（极端气候地区优先）。
+\end{itemize}
+
+\section{目标市场}
+初期聚焦户外和运动人群，三年内扩展至日常消费者。优先进入北美市场（占智能服装市场38.9\%），随后扩展至欧洲和亚太地区。
+
+\section{市场定位}
+定位为高性能、科技驱动的温控服装，满足多场景需求。品牌口号：“舒适随你，科技随行”。
+
+\section{品牌策划}
+\begin{itemize}
+    \item \textbf{品牌个性}：创新、可靠、环保。
+    \item \textbf{品牌故事}：从鱿鱼皮肤的自然启发到尖端科技的服装革命。
+    \item \textbf{传播方式}：
+        \begin{itemize}
+            \item 社交媒体（X、Instagram）推广，发布技术演示视频。
+            \item 赞助户外活动（如马拉松、登山节）。
+            \item 与KOL和专业运动员合作，展示产品性能。
+        \end{itemize}
+\end{itemize}
+
+\section{营销组合}
+\begin{itemize}
+    \item \textbf{产品}：时尚、功能性强的温控服装，强调无电池和可持续性。
+    \item \textbf{价格}：200-300美元，高端定位，反映技术价值。
+    \item \textbf{渠道}：
+        \begin{itemize}
+            \item 线上：品牌官网、亚马逊、电商平台。
+            \item 线下：高端户外零售店（如REI、Decathlon）。
+        \end{itemize}
+    \item \textbf{促销}：
+        \begin{itemize}
+            \item 数字营销：SEO、社交媒体广告。
+            \item 公关：技术发布会、媒体报道。
+            \item 促销活动：首发折扣、会员计划。
+        \end{itemize}
+\end{itemize}
+
+\chapter{生产运作}
+\section{技术研发}
+\begin{itemize}
+    \item \textbf{现状}：基于实验室技术，需优化生产工艺以实现规模化。
+    \item \textbf{计划}：
+        \begin{itemize}
+            \item 1年内完成生产工艺优化，降低成本。
+            \item 2年内开发第二代材料，提升调节范围（10°C-40°C）。
+        \end{itemize}
+    \item \textbf{研发团队}：由材料科学家和纺织工程师组成，依托中国科学院大学的科研资源。
+\end{itemize}
+
+\section{原材料供应}
+\begin{itemize}
+    \item \textbf{需求}：高性能聚合物、铜基材料。
+    \item \textbf{供应商}：与全球特种材料供应商（如杜邦、巴斯夫）合作。
+    \item \textbf{保障措施}：签订长期供货合同，多元化供应商以降低风险。
+\end{itemize}
+
+\section{生产条件分析}
+\begin{itemize}
+    \item \textbf{设施}：需专用纺织设备，如精密涂层机和织造机。
+    \item \textbf{人员}：招聘纺织工程师、质量控制专家。
+    \item \textbf{地点}：初期在中国建立生产基地，利用成本优势；长期考虑在北美或欧洲设厂。
+\end{itemize}
+
+\section{效益分析}
+\begin{itemize}
+    \item \textbf{产能}：首年10万件，三年内增至50万件。
+    \item \textbf{成本}：单件生产成本约80美元（材料50\%、人工20\%、设备30\%）。
+    \item \textbf{产值}：首年产值2000万美元，三年内达1亿美元。
+\end{itemize}
+
+\chapter{经营管理}
+\section{业务流程}
+\begin{enumerate}
+    \item \textbf{设计}：开发时尚且功能性的服装款式。
+    \item \textbf{研发}：优化材料性能和生产工艺。
+    \item \textbf{生产}：制造高质量成品。
+    \item \textbf{营销}：通过线上线下渠道推广。
+    \item \textbf{销售}：直销和零售合作。
+    \item \textbf{售后}：提供保修和客户支持。
+\end{enumerate}
+
+\section{组织结构}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{部门} & \textbf{职能} & \textbf{人数} \\
+        \hline
+        研发 & 技术开发、材料优化 & 10 \\
+        \hline
+        运营 & 生产、供应链管理 & 15 \\
+        \hline
+        营销 & 品牌推广、销售 & 15 \\
+        \hline
+        财务 & 资金管理、预算 & 5 \\
+        \hline
+        行政 & 人力资源、法律 & 5 \\
+        \hline
+    \end{tabular}
+    \caption{组织结构}
+\end{table}
+
+% 在“组织结构”部分插入下面的 TikZ 组织结构图
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        level distance=1.2cm,
+        level 1/.style={sibling distance=2.5cm},
+        every node/.style={
+          draw,
+          rounded corners,
+          align=center,
+          font=\small,
+          fill=blue!10,
+          minimum width=2.5cm,
+          minimum height=0.8cm
+        },
+        edge from parent/.style={draw, -{latex}},
+        grow=down
+      ]
+      \node {CEO}
+        child { node {研发部} }
+        child { node {运营部} }
+        child { node {营销部} }
+        child { node {财务部} }
+        child { node {行政部} };
+    \end{tikzpicture}
+    \caption{组织结构图}
+  \end{figure}
+
+\section{人力资源管理}
+\begin{itemize}
+    \item \textbf{招聘}：材料科学家、纺织工程师、营销专家。
+    \item \textbf{培训}：技术培训、品牌文化教育。
+    \item \textbf{激励}：
+        \begin{itemize}
+            \item 股权激励：核心团队持股10\%。
+            \item 绩效奖金：基于销售和研发成果。
+            \item 职业发展：提供晋升和学习机会。
+        \end{itemize}
+\end{itemize}
+
+\section{创业团队展示}
+团队由六位中国科学院大学学生组成，专业背景涵盖：
+\begin{itemize}
+    \item \textbf{材料科学}：2人，负责技术研发。
+    \item \textbf{电子工程}：1人，优化生产工艺。
+    \item \textbf{工商管理}：2人，负责市场和财务。
+    \item \textbf{设计}：1人，开发时尚款式。
+\end{itemize}
+团队成员平均年龄28岁，具备深厚科研背景和创业热情，曾参与多项国家级科研项目。
+
+\chapter{财务管理}
+\section{经营业绩预测}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{年份} & \textbf{销量（万件）} & \textbf{收入（万美元）} & \textbf{成本（万美元）} & \textbf{利润（万美元）} \\
+        \hline
+        2025 & 5.15 & 1030 & 620 & 350 \\
+        \hline
+        2026 & 13.4 & 2680 & 1500 & 1000 \\
+        \hline
+        2035 & 53.75 & 10750 & 5500 & 4500 \\
+        \hline
+    \end{tabular}
+    \caption{经营业绩预测}
+\end{table}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width=\textwidth,
+        height=7cm,
+        xlabel={年份},
+        ylabel={金额 (万美元)},
+        symbolic x coords={2025,2026,2035},
+        xtick=data,
+        legend style={at={(0.5,1)}, anchor=north, legend columns=-1},
+        ymajorgrids=true,
+        grid style=dashed,
+        ymin=0,
+    ]
+    \addplot[thick,blue,mark=square] coordinates {(2025,1030) (2026,2680) (2035,10750)};
+    \addplot[thick,red,mark=triangle] coordinates {(2025,620) (2026,1500) (2035,5500)};
+    \addplot[thick,green!60!black,mark=o] coordinates {(2025,350) (2026,1000) (2035,4500)};
+    \legend{收入,成本,利润}
+    \end{axis}
+    \end{tikzpicture}
+
+\noindent\textbf{假设}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{平均售价}：200美元/件。
+  \item \textbf{单位成本}：80美元（首年），随规模化降至60美元。
+  \item \textbf{营销费用}：收入的20\%。
+\end{itemize}
+
+\section{财务报表}
+\begin{itemize}
+    \item \textbf{利润表}：
+        \begin{itemize}
+            \item 2025年：收入1030万美元，成本620万，净利润350万。
+            \item 2026年：收入2680万美元，成本1500万，净利润1000万。
+        \end{itemize}
+    \item \textbf{资产负债表}：
+        \begin{itemize}
+            \item 初期资产：研发设备（200万）、库存（100万）。
+            \item 负债：初期贷款100万。
+        \end{itemize}
+    \item \textbf{现金流量表}：
+        \begin{itemize}
+            \item 确保正向现金流，首年现金流入800万。
+        \end{itemize}
+\end{itemize}
+
+\section{财务分析}
+\begin{itemize}
+    \item \textbf{销售利润率}：首年34\%，三年内增至42\%。
+    \item \textbf{资产负债率}：首年20\%，保持低杠杆。
+    \item \textbf{投资回报率}：首年15\%，三年内达30\%。
+    \item \textbf{盈亏平衡点}：3万件（600万美元收入）。
+\end{itemize}
+
+\vspace{1em}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width=\textwidth,
+        height=7cm,
+        xlabel={销量 (万件)},
+        ylabel={金额 (万美元)},
+        xmin=0, xmax=6,
+        ymin=0, ymax=1200,
+        legend style={at={(0.5,0.95)}, anchor=north, legend columns=-1},
+        ymajorgrids=true,
+        grid style=dashed,
+    ]
+    % 固定成本
+    \addplot[thick,red,domain=0:6] {360};
+    \addlegendentry{固定成本}
+    
+    % 收入 - 200美元/件
+    \addplot[thick,blue,domain=0:6] {200*x};
+    \addlegendentry{收入}
+    
+    % 总成本 - 固定成本 + 变动成本
+    \addplot[thick,green!60!black,domain=0:6] {360 + 80*x};
+    \addlegendentry{总成本}
+    
+    % 盈亏平衡点
+    \addplot[mark=*,mark size=3pt,black,only marks] coordinates {(3,600)};
+    \node[above right] at (axis cs:3,600) {盈亏平衡点: 3万件, 600万美元};
+    \end{axis}
+    \end{tikzpicture}
+
+
+
+\section{融资说明}
+\begin{itemize}
+    \item \textbf{额度}：500万美元。
+    \item \textbf{方式}：风险投资（70\%）、科研资助（20\%）、银行贷款（10\%）。
+    \item \textbf{股权结构}：创始人70\%，投资人30\%。
+    \item \textbf{回报方式}：三年后分红或IPO。
+    \item \textbf{退出渠道}：五年内通过并购或上市退出。
+\end{itemize}
+
+\vspace{1em}
+
+\begin{tikzpicture}
+    % 定义颜色
+    \definecolor{vccolor}{RGB}{70,130,180}
+    \definecolor{grantcolor}{RGB}{95,158,160}
+    \definecolor{loancolor}{RGB}{205,92,92}
+    
+    % 绘制饼图扇形
+    \begin{scope}[scale=1.5]
+      % 风险投资: 70%
+      \fill[vccolor] (0,0) -- (0:1) arc (0:252:1) -- cycle;
+      
+      % 科研资助: 20%
+      \fill[grantcolor] (0,0) -- (252:1) arc (252:324:1) -- cycle;
+      
+      % 银行贷款: 10%
+      \fill[loancolor] (0,0) -- (324:1) arc (324:360:1) -- cycle;
+    \end{scope}
+    
+    % 添加标签
+    \node at (126:1.8) {\textbf{风险投资}: 70\% (350万美元)};
+    \node at (288:1.8) {\textbf{科研资助}: 20\% (100万美元)};
+    \node at (342:1.8) {\textbf{银行贷款}: 10\% (50万美元)};
+    
+    % 添加标题
+    \node at (0,2.5) {\Large \textbf{融资结构}};
+  \end{tikzpicture}
+
+
+\section{投资说明}
+\begin{itemize}
+    \item \textbf{用途}：
+        \begin{itemize}
+            \item 研发：50\%（250万），用于材料优化和专利申请。
+            \item 营销：30\%（150万），用于品牌推广和渠道建设。
+            \item 运营：20\%（100万），用于生产设备和库存。
+        \end{itemize}
+    \item \textbf{监督}：设立财务审计委员会，定期报告资金使用情况。
+\end{itemize}
+
+\vspace{1em}
+
+\begin{tikzpicture}
+    % 定义饼图颜色
+    \definecolor{pieblue}{RGB}{70,130,180}
+    \definecolor{piegreen}{RGB}{95,158,160}
+    \definecolor{piered}{RGB}{205,92,92}
+    
+    % 绘制饼图扇形
+    \begin{scope}[scale=1.5]
+      % 研发: 50%
+      \fill[pieblue] (0,0) -- (0:1) arc (0:180:1) -- cycle;
+      
+      % 营销: 30%
+      \fill[piegreen] (0,0) -- (180:1) arc (180:288:1) -- cycle;
+      
+      % 运营: 20%
+      \fill[piered] (0,0) -- (288:1) arc (288:360:1) -- cycle;
+    \end{scope}
+    
+    % 添加标签
+    \node at (90:1.8) {\textbf{研发}: 50\% (250万美元)};
+    \node at (234:1.8) {\textbf{营销}: 30\% (150万美元)};
+    \node at (324:1.8) {\textbf{运营}: 20\% (100万美元)};
+    
+    % 添加标题
+    \node at (0,2.5) {\Large \textbf{投资分配}};
+  \end{tikzpicture}
+
+\chapter{风险管理}
+\section{风险识别}
+创业过程中可能面临以下主要风险：
+\begin{itemize}
+    \item \textbf{技术风险}：核心热调节材料性能不稳定，或生产工艺无法实现规模化。
+    \item \textbf{市场风险}：消费者对智能温控服装的接受度低于预期，市场推广效果不佳。
+    \item \textbf{竞争风险}：大型服装品牌或初创公司进入市场，引发价格战或技术模仿。
+    \item \textbf{财务风险}：初期资金不足，导致研发或生产中断，现金流紧张。
+    \item \textbf{供应链风险}：关键原材料（如聚合物、铜基材料）供应中断或价格波动。
+    \item \textbf{法规风险}：未能满足纺织品安全或环保法规，导致市场准入受限。
+\end{itemize}
+
+\section{风险分析}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|p{6cm}|}
+      \hline
+      \textbf{风险类型} & \textbf{可能性} & \textbf{影响程度} & \textbf{综合评分} & \textbf{说明} \\
+      \hline
+      技术失败       & 低   & 高   & 中等   & 实验室测试已验证技术可行，但规模化生产需进一步优化 \\
+      \hline
+      市场接受度低   & 中等 & 中等 & 中等   & 需通过营销和消费者教育提升认知 \\
+      \hline
+      竞争加剧       & 高   & 高   & 高     & 大品牌可能快速进入，需差异化竞争 \\
+      \hline
+      资金短缺       & 中等 & 高   & 高     & 初期研发和营销投入大，需确保融资 \\
+      \hline
+      供应链中断     & 中等 & 中等 & 中等   & 依赖特种材料，需多元化供应商 \\
+      \hline
+      法规限制       & 低   & 中等 & 低     & 需提前准备认证，但法规通常明确 \\
+      \hline
+    \end{tabular}
+    \caption{风险分析}
+  \end{table}
+  
+  \noindent\textbf{分析方法}：可能性和影响程度通过团队讨论和行业数据评估，综合评分基于“可能性×影响程度”。高评分风险需优先应对。  
+
+\section{风险应对}
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{技术风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：加强实验室测试，确保材料在多种环境下的稳定性；与高校（如中国科学院大学）合作，优化生产工艺。
+      \item \textbf{应对措施}：建立技术备份方案，如开发替代材料；申请专利，保护核心技术（预计2027年完成）。
+    \end{itemize}
+  \item \textbf{市场风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：通过社交媒体（X、Instagram）、KOL合作和试用活动提升消费者认知；提供30天无理由退货政策，降低购买风险。
+      \item \textbf{应对措施}：根据市场反馈快速调整产品设计或营销策略；推出入门级价格产品，吸引更广泛消费者。
+    \end{itemize}
+  \item \textbf{竞争风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：通过技术专利和品牌建设建立进入壁垒；突出无电池、环保特性，形成差异化优势。
+      \item \textbf{应对措施}：加速产品迭代，保持技术领先；与零售商建立独家合作，锁定分销渠道。
+    \end{itemize}
+  \item \textbf{财务风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：制定详细财务预算，控制研发和营销成本；多元化融资渠道，包括风险投资、科研资助和银行贷款。
+      \item \textbf{应对措施}：建立应急资金池，优先保障核心业务；与投资人协商延期回报期限。
+    \end{itemize}
+  \item \textbf{供应链风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：与多家供应商（如杜邦、巴斯夫）签订长期合同；建立原材料库存，应对短期中断。
+      \item \textbf{应对措施}：开发替代供应商网络，快速切换供货来源。
+    \end{itemize}
+  \item \textbf{法规风险}：
+    \begin{itemize}[itemsep=0.5ex,leftmargin=1.5em]
+      \item \textbf{预防措施}：聘请专业咨询机构，确保产品符合欧盟REACH、美国CPSIA等法规；提前申请认证。
+      \item \textbf{应对措施}：调整材料配方或生产流程，满足法规要求。
+    \end{itemize}
+\end{itemize}
+\vspace{1ex}
+\textbf{风险管理计划}：
+\begin{itemize}[itemsep=1ex,leftmargin=*]
+  \item \textbf{监测机制}：每月召开风险评估会议，更新风险清单和应对措施。
+  \item \textbf{责任分配}：研发部负责技术风险，营销部负责市场风险，运营部负责供应链风险，财务部负责资金风险。
+  \item \textbf{应急预案}：制定详细危机管理手册，涵盖技术失败、市场下滑等情景。
+\end{itemize}
+
+\chapter{实施计划}
+\section{总体时间表}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{阶段} & \textbf{时间} & \textbf{主要任务} & \textbf{负责人} \\
+        \hline
+        准备阶段 & 2025 Q1-Q2 & 技术验证、专利申请、团队组建 & 研发部、行政部 \\
+        \hline
+        产品开发 & 2025 Q3-Q4 & 优化生产工艺、开发原型产品 & 研发部、运营部 \\
+        \hline
+        市场测试 & 2026 Q1 & 小规模试销、收集用户反馈 & 营销部 \\
+        \hline
+        正式生产 & 2026 Q2 & 启动大规模生产、建立供应链 & 运营部 \\
+        \hline
+        市场推广 & 2026 Q3-Q4 & 线上线下推广、零售合作 & 营销部 \\
+        \hline
+        扩展阶段 & 2027-2028 & 推出新品类、进入国际市场 & 全员 \\
+        \hline
+    \end{tabular}
+    \caption{实施时间表}
+\end{table}
+
+\section{里程碑}
+\begin{itemize}
+    \item \textbf{2025年6月}：完成聚合物-铜岛材料实验室测试，申请专利。
+    \item \textbf{2025年12月}：生产首批1000件原型产品，用于市场测试。
+    \item \textbf{2026年3月}：完成市场测试，优化产品设计。
+    \item \textbf{2026年6月}：启动首年10万件生产计划，官网上线。
+    \item \textbf{2026年12月}：实现1030万美元收入，捕获0.1\%市场。
+    \item \textbf{2029年12月}：收入达5000万美元，进入北美和欧洲市场。
+\end{itemize}
+
+\section{资源需求}
+\begin{itemize}
+    \item \textbf{人力资源}：初期50人团队，包括研发（10人）、运营（15人）、营销（15人）、财务（5人）、行政（5人）。
+    \item \textbf{资金需求}：500万美元，用于研发（250万）、营销（150万）、运营（100万）。
+    \item \textbf{设备需求}：专用纺织设备（涂层机、织造机），预计投资100万美元。
+    \item \textbf{技术支持}：与中国科学院大学材料科学实验室合作，提供技术验证和优化支持。
+\end{itemize}
+
+\section{关键绩效指标（KPI）}
+\begin{itemize}
+    \item \textbf{研发}：2025年底完成生产工艺优化，单位成本降至80美元。
+    \item \textbf{生产}：2026年实现10万件产能，次品率低于2\%。
+    \item \textbf{营销}：2026年官网访问量达50万，转化率5\%。
+    \item \textbf{财务}：2026年净利润350万美元，现金流正向。
+\end{itemize}
+
+\chapter{退出策略}
+\section{投资人退出路径}
+\begin{itemize}
+    \item \textbf{首次公开募股（IPO）}：计划2030年在纳斯达克或上海证券交易所上市，预计估值2亿美元。
+    \item \textbf{并购}：与大型服装品牌或科技公司协商并购，预计2029年完成，估值1.5-2亿美元。
+    \item \textbf{股权转让}：投资人可将股份转让给其他机构投资者，预计2028年起开放。
+    \item \textbf{分红}：2027年起提供年度分红，预计年化回报率10\%。
+\end{itemize}
+
+\section{创始人退出计划}
+\begin{itemize}
+    \item \textbf{长期持有}：创始人计划持有70\%股权至IPO或并购，确保战略控制。
+    \item \textbf{部分退出}：2028年后可出售部分股权，保留至少51\%控制权。
+    \item \textbf{管理层激励}：通过股权激励计划，吸引高管长期留任。
+\end{itemize}
+
+\section{退出时间表}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{时间} & \textbf{退出方式} & \textbf{预期回报} \\
+        \hline
+        2027 & 分红启动 & 年化10\% \\
+        \hline
+        2028 & 股权转让 & 1.5倍回报 \\
+        \hline
+        2029 & 并购 & 估值1.5-2亿美元 \\
+        \hline
+        2030 & IPO & 估值2亿美元 \\
+        \hline
+    \end{tabular}
+    \caption{退出时间表}
+\end{table}
+
+风险提示：退出计划受市场环境、技术进展和公司业绩影响，需根据实际情况调整。
+
+\chapter{结论}
+智能温控服装项目是一个高潜力的创业机会，结合了生物启发技术、市场需求和可持续发展趋势。产品通过无电池、双向热调节技术，满足户外、运动和日常消费者的舒适需求，填补了现有市场的技术空白。预计2024年全球智能服装市场规模达51.6亿美元，温控服装约占10.3亿美元，首年目标收入1030万美元，三年内达5000万美元。
+
+团队由六位中国科学院大学学生组成，具备材料科学、工程和工商管理背景，依托先进技术与科研资源，确保项目可行性。通过直销、零售合作和技术授权的商业模式，结合差异化竞争战略，公司有望在智能服装市场占据领先地位。融资需求为500万美元，主要用于研发和市场推广，预计投资回报率三年内达30\%。
+
+尽管面临技术、竞争和市场接受度的风险，通过专利保护、品牌建设和多元化融资，项目可有效应对挑战。未来五年，公司将从产品开发、市场测试走向国际化扩张，最终通过IPO或并购实现投资人退出，为股东创造显著价值。
+
+\chapter{参考文献}
+\sloppy
+\begin{enumerate}
+    \item Grand View Research. (2024). \textit{Smart Clothing Market Size, Share \& Trends Analysis Report By Product, By Application, By Region, And Segment Forecasts, 2024 - 2030}. \url{https://www.grandviewresearch.com/industry-analysis/smart-clothing-market-report}
+    \item MarketsandMarkets. (2023). \textit{Smart Textiles Market by Type, Function, End-use Industry, and Region - Global Forecast to 2028}. \url{https://www.marketsandmarkets.com/Market-Reports/smart-textiles-market-13764132.html}
+    \item Zhang, A., et al. (2024). \textit{Manufacturing of breathable, washable, and fabric-integrated radiative cooling/heating textiles inspired by squid skin}. \textit{APL Bioengineering}, 8(4), 046101. \url{https://doi.org/10.1063/5.0169558}
+    \item Cai, L., et al. (2022). \textit{Bioinspired dynamic camouflage and thermal regulation textiles}. \textit{Cell Reports Physical Science}, 3(10), 101123. \url{https://doi.org/10.1016/j.xcrp.2022.101123}
+    \item ScienceDaily. (2024). \textit{Squid-inspired fabric for temperature-controlled clothing}. \url{https://www.sciencedaily.com/releases/2024/10/241001114730.htm}
+    \item 37.5 Technology. (2024). \textit{Our Technology}. \url{https://www.thirtysevenfive.com/}
+    \item HeiQ. (2024). \textit{HeiQ Smart Temp – Thermoregulation}. \url{https://www.heiq.com/products/textile-technologies/heiq-smart-temp-thermoregulation/}
+    \item Ministry of Supply. (2024). \textit{Intelligent Apparel}. \url{https://www.ministryofsupply.com/}
+    \item Textile World. (2023). \textit{The Rise of Smart Textiles in Apparel}. \url{https://www.textileworld.com/textile-world/features/2023/05/the-rise-of-smart-textiles-in-apparel/}
+    \item European Commission. (2023). \textit{REACH Regulation}. \url{https://ec.europa.eu/environment/chemicals/reach/reach_en.htm}
+    \item U.S. Consumer Product Safety Commission. (2023). \textit{CPSIA Requirements for Textiles}. \url{https://www.cpsc.gov/Business--Manufacturing/Business-Education/CPSIA}
+    \item New Scientist. (2016). \textit{Smart clothes adapt so you are always the right temperature}. \url{https://www.newscientist.com/article/2074964-smart-clothes-adapt-so-you-are-always-the-right-temperature/}
+    \item Singularity Hub. (2023). \textit{Solar-powered ‘smart’ clothing could rapidly heat or cool your body}. \url{https://singularityhub.com/2023/12/18/solar-powered-smart-clothing-could-rapidly-heat-or-cool-your-body/}
+\end{enumerate}
+
+\chapter{附件}
+\section{附件1：宏观环境分析（PEST）}
+\begin{itemize}
+    \item \textbf{框架}：政治（法规、贸易政策）、经济（消费能力、经济周期）、社会（文化趋势、消费者行为）、技术（技术进步、研发环境）。
+    \item \textbf{用途}：识别外部有利和不利因素，为战略决策提供依据。
+\end{itemize}
+
+\section{附件2：微观环境分析}
+\begin{itemize}
+    \item \textbf{框架}：客户（需求、购买力）、竞争者（优势、劣势）、供应商（议价能力）、分销商（渠道效率）。
+    \item \textbf{用途}：了解市场和行业动态，制定针对性策略。
+\end{itemize}
+
+\section{附件3：企业内部环境分析}
+\begin{itemize}
+    \item \textbf{框架}：资源（人力、资金、技术）、能力（研发、生产、营销）、文化（团队协作、创新氛围）。
+    \item \textbf{用途}：评估企业优劣势，明确核心竞争力。
+\end{itemize}
+
+\section{附件4：行业分析工具——波特五力模型}
+\begin{itemize}
+    \item \textbf{框架}：新进入者威胁、供应商议价能力、买家议价能力、替代品威胁、行业竞争。
+    \item \textbf{用途}：分析行业竞争格局，发现机会和威胁。
+\end{itemize}
+
+\section{附件5：关键成功要素分析法}
+\begin{itemize}
+    \item \textbf{框架}：技术创新、产品质量、品牌形象、分销渠道、成本控制。
+    \item \textbf{用途}：明确企业成功所需的关键要素，评估现有能力。
+\end{itemize}
+
+\section{附件6：环境综合分析——SWOT分析法}
+\begin{itemize}
+    \item \textbf{框架}：优势（内部有利）、劣势（内部不利）、机会（外部有利）、威胁（外部不利）。
+    \item \textbf{用途}：汇总环境分析结果，指导战略制定。
+\end{itemize}
+
+\section{附件7：市场细分标准（参考）}
+\begin{itemize}
+    \item \textbf{框架}：按活动（户外、运动、日常）、人群（年龄、收入）、地区（气候、经济发展）。
+    \item \textbf{用途}：划分目标市场，精准定位消费者。
+\end{itemize}
+
+\section{附件8：市场定位方法（参考）}
+\begin{itemize}
+    \item \textbf{框架}：基于属性（技术领先）、使用场景（多场景适用）、竞争者（差异化）。
+    \item \textbf{用途}：塑造独特品牌形象，占据市场优势。
+\end{itemize}
+
+\section{附件9：品牌策划内容——波士顿品牌要素模型（参考）}
+\begin{itemize}
+    \item \textbf{框架}：品牌名称、标志、故事、个性、传播方式。
+    \item \textbf{用途}：设计品牌要素，增强市场认知。
+\end{itemize}
+
+\section{附件10：常用促销工具（参考）}
+\begin{itemize}
+    \item \textbf{框架}：广告（线上、线下）、公关（媒体报道）、促销（折扣、赠品）、人员推销（展会）。
+    \item \textbf{用途}：制定促销策略，提升销量。
+\end{itemize}
+
+\section{附件11：常见组织结构图——生产型企业（举例）}
+\begin{itemize}
+    \item \textbf{框架}：CEO下设研发、运营、营销、财务、行政部门。
+    \item \textbf{用途}：明确部门职能和协作方式。
+\end{itemize}
+
+\end{document}
