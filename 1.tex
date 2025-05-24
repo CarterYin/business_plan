@@ -46,6 +46,7 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \PassOptionsToPackage{dvipsnames,svgnames}{xcolor}
     \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     % \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     % \hypersetup{
@@ -90,6 +91,7 @@
     \usepackage{pgfplots}   % 宏包：绘图工具
     \usepackage{enumerate}  % 宏包：列表环境设置
     \usepackage{enumitem}   % 宏包：列表环境设置
+    \usetikzlibrary{positioning,shapes,arrows,arrows.meta}
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
@@ -343,7 +345,7 @@
 
 %文档信息设置
 \title{\Huge 智能温控服装创业计划书}
-\author{\Large 尹超\hspace{1em}许书闻\hspace{1em}孙弈飞\hspace{1em}石禹\hspace{1em}王湑\hspace{1em}徐子谦\\ \normalsize 中国科学院大学，北京 100049 \\ \normalsize University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{\Large 尹超\hspace{1em}许书闻\hspace{1em}孙奕飞\hspace{1em}石禹\hspace{1em}王湑\hspace{1em}徐子谦\\ \normalsize 中国科学院大学，北京 100049 \\ \normalsize University of Chinese Academy of Sciences, Beijing 100049, China}
 \date{\normalsize 2025.4.30} % 日期
 % >> --------------------- 文章信息区 --------------------- << %
 % ----------------------------------------------------------- %     
@@ -375,11 +377,11 @@
                 \hline
                 \textbf{组长} & 尹超 \\
                 \hline
-                \textbf{组员} & 许书闻、石禹、孙弈飞、王湑、徐子谦 \\
+                \textbf{组员} & 许书闻、石禹、孙奕飞、王湑、徐子谦 \\
                 \hline
                 \multicolumn{2}{|c|}{\textbf{任务分工}} \\
                 \hline
-                \textbf{创业计划书撰写} & 尹超、孙弈飞 \\
+                \textbf{创业计划书撰写} & 尹超、孙奕飞 \\
                 \hline
                 \textbf{路演PPT制作} & 许书闻、王湑、徐子谦 \\
                 \hline
@@ -1494,10 +1496,86 @@
 
 \chapter{附件}
 \section{附件1：宏观环境分析（PEST）}
+
 \begin{itemize}
     \item \textbf{框架}：政治（法规、贸易政策）、经济（消费能力、经济周期）、社会（文化趋势、消费者行为）、技术（技术进步、研发环境）。
     \item \textbf{用途}：识别外部有利和不利因素，为战略决策提供依据。
 \end{itemize}
+    \subsubsection{一、政治环境（Political）}
+        \begin{itemize}
+            \item 法规政策：
+                \begin{itemize}
+                    \item 智能穿戴产品安全与环保法规：需遵循欧盟 REACH、美国 CPSIA、中国《纺织品安全国家标准》等，确保材料无毒、无过敏风险。
+                    \item 数据与隐私保护：产品采集体温、生理数据，须符合 GDPR、我国《个人信息保护法》对个人健康数据的监管要求。
+                \end{itemize}
+            \item 贸易政策：
+                \begin{itemize}
+                    \item 进出口关税与贸易摩擦：中美贸易摩擦下，关注关税变化，并利用自贸区、RCEP 等区域优惠政策降低成本。
+                    \item 国家支持政策：包括“中国制造 2025”“十四五”智能制造专项资金、高新技术企业认定及研发费用加计扣除，以及各地户外运动产业扶持补贴。
+                \end{itemize}
+        \end{itemize}
+
+    \subsubsection{二、经济环境（Economic）}
+        \begin{itemize}
+            \item 消费能力：
+                \begin{itemize}
+                    \item 居民人均可支配收入稳步增长，中高端消费升级带动智能穿戴需求。
+                    \item 功能性服装支出比重上升，户外运动和健康管理人群愿为创新产品支付溢价。
+                \end{itemize}
+            \item 经济周期：
+                \begin{itemize}
+                    \item 后疫情时代，户外及健身市场快速回暖。
+                    \item 全球通胀与供应链中断导致原材料、物流成本波动，需建立成本控制与价格调整机制。
+                \end{itemize}
+            \item 产业链协同：
+                \begin{itemize}
+                    \item 上游：高分子智能材料、电子传感器供应商（如杜邦、巴斯夫、博世、ST）。
+                    \item 中游：成衣代工及智能装备制造。
+                    \item 下游：电商平台、专业户外零售商及体验店。
+                \end{itemize}
+        \end{itemize}
+
+    \subsubsection{三、社会环境（Social）}
+        \begin{itemize}
+            \item 文化趋势：
+                \begin{itemize}
+                    \item 健康、运动、自我管理理念普及，追求舒适、个性化和科技感的服饰。
+                    \item “国潮”与“智能时尚”结合，使高科技服装更易被年轻消费群体接受。
+                \end{itemize}
+            \item 消费者行为：
+                \begin{itemize}
+                    \item 消费者对功能性服装（温控、防晒、防水）的认知不断提升。
+                    \item 社交媒体（抖音、小红书、微博）对新品传播加速，KOL 带货效应明显。
+                \end{itemize}
+            \item 社会结构：
+                \begin{itemize}
+                    \item 城镇化进程与中产群体扩张，户外休闲与城市通勤两大场景均有潜在需求。
+                    \item 老龄化背景下，体温调节需求在中老年人群中增长。
+                \end{itemize}
+        \end{itemize}
+
+    \subsubsection{四、技术环境（Technological）}
+        \begin{itemize}
+            \item 技术进步：
+                \begin{itemize}
+                    \item 仿生温控材料：基于鱿鱼皮肤启发的高分子微纤维，可实现被动／主动两级温控。
+                    \item 传感与驱动：低功耗柔性温度传感器、纳米发热片、可弯曲电极、无线充电技术。
+                    \item 软件算法：边缘计算与云端 AI 算法协同，实现个性化智能温控策略。
+                \end{itemize}
+            \item 研发环境：
+                \begin{itemize}
+                    \item 高校与科研院所支持：利用中科院、清华、北大等产学研合作平台，加快材料与工艺攻关。
+                    \item 政府／园区孵化器：享受场地、资金、人才等配套服务，推动快速试产与小批量上市。
+                    \item 开源硬件与社区：IoT 生态和开源传感平台降低开发门槛，加速产品迭代。
+                \end{itemize}
+        \end{itemize}
+
+    \subsubsection{五、综合评价}
+        \begin{itemize}
+            \item 有利因素：国家支持智能制造与创新、消费升级驱动市场、技术突破加速落地、社交媒体传播效率高。
+            \item 不利因素：国际贸易摩擦与关税不确定、原材料及电子元件价格波动、法规对数据与安全要求趋严。
+        \end{itemize}
+
 
 \section{附件2：微观环境分析}
 \begin{itemize}
@@ -1505,16 +1583,207 @@
     \item \textbf{用途}：了解市场和行业动态，制定针对性策略。
 \end{itemize}
 
+\subsubsection{一、客户（Customers）}
+    \begin{itemize}
+      \item 需求（Demand）
+        \begin{itemize}
+          \item 场景细分：户外运动（登山、滑雪）、日常通勤、居家养生三大场景温控需求各异。
+          \item 核心诉求：精准控温、穿着舒适、续航持久、易于清洗维护、与手机／可穿戴设备互联。
+          \item 安全与健康：中老年及对体温波动敏感人群（慢性病患者）对“智能体温监测＋温控”复合功能需求增长。
+        \end{itemize}
+      \item 购买力（Purchasing Power）
+        \begin{itemize}
+          \item 价格敏感度：专业运动人群对高端功能性装备（单件售价 1\,000–3\,000 元）接受度高；普通消费者价格阈值约 500–800 元。
+          \item 渠道偏好：一线及强二线城市用户更习惯网购／品牌官微小程序下单；三四线及农村市场仍依赖线下体验店。
+          \item 增值服务意愿：近 30\% 用户愿意为个性化温控方案或升级固件付费（来源：Deloitte 2021 可穿戴设备报告）。
+        \end{itemize}
+    \end{itemize}
+
+\subsubsection{二、竞争者（Competitors）}
+    \begin{itemize}
+      \item 主要竞争者
+        \begin{itemize}
+          \item 国际品牌：The North Face、Arc’teryx、Columbia 等已推出加热服系列，品牌认知度高、渠道成熟。
+          \item 本土新锐：小米生态链及若干运动科技初创企业，价格更具竞争力但技术与品牌信任度待提升。
+        \end{itemize}
+      \item 优势（Strengths）
+        \begin{itemize}
+          \item 品牌与渠道：传统户外大牌渠道覆盖广、服务网络完善。
+          \item 规模效应：批量采购原材料与大规模代工压低成本。
+        \end{itemize}
+      \item 劣势（Weaknesses）
+        \begin{itemize}
+          \item 技术同质化：多数加热服仅依赖简单电阻丝发热，智能化、个性化水平不足。
+          \item 研发投入偏低：缺乏传感器→算法→云平台的闭环，难以形成持续迭代能力。
+        \end{itemize}
+      \item 机会（Opportunities）
+        \begin{itemize}
+          \item 细分人群：中高端健康管理、户外探险、极寒运动等高溢价细分市场尚未被充分覆盖。
+          \item 跨界合作：与运动平台、体检机构、健康管理 App 联合可快速导流。
+        \end{itemize}
+      \item 威胁（Threats）
+        \begin{itemize}
+          \item 新进入者：智能硬件厂商入局，具有软硬件一体化优势。
+          \item 山寨泛滥：部分无资质的代工厂易抄袭外观与基本电路设计。
+        \end{itemize}
+    \end{itemize}
+
+\subsubsection{三、供应商（Suppliers）}
+    \begin{itemize}
+      \item 上游要素
+        \begin{itemize}
+          \item 功能面料：导电纤维、相变材料、纳米涂层——供应商多为国际或大型化工企业（如杜邦、巴斯夫、Smartfiber），集中度较高，议价能力偏强。
+          \item 电子元器件：低功耗温度传感器（ST、TI）、可弯折 PCB、锂聚合物软包电池——高端传感器供应商技术壁垒大，价格波动受原材料（钴、锂）影响。
+        \end{itemize}
+      \item 议价能力（Bargaining Power）
+        \begin{itemize}
+          \item 规模化采购：订单量若达 10\,000+ 件，可获得 5\%–10\% 材料价优惠。
+          \item 替代性：对传感器和电池依赖度较高，短期内难以大幅切换供应商，需通过长期合约与技术合作锁定价格和性能。
+        \end{itemize}
+      \item 风险与对策
+        \begin{itemize}
+          \item 风险：国际原材料价格波动、贸易政策突变导致关税上浮。
+          \item 对策：拓展国内中小型高分子材料供应商，分散采购风险；与核心供应商建立联合研发与库存共担机制。
+        \end{itemize}
+    \end{itemize}
+
+\subsubsection{四、分销商（Distributors）}
+    \begin{itemize}
+      \item 渠道类型
+        \begin{itemize}
+          \item 电子商务：天猫、京东、速卖通、品牌自有官网／小程序——投入推广费（PPC）与直播带货可快速启动。
+          \item 线下渠道：品牌专卖店、户外用品连锁（迪卡侬、狼爪）、体育用品专营店——体验好、客单价高但铺货周期长、库存压力大。
+          \item 新兴渠道：社交电商（拼多多、抖音电商）、会员制健身房／健康管理中心分销。
+        \end{itemize}
+      \item 渠道效率（Channel Efficiency）
+        \begin{itemize}
+          \item 电商投入产出比：天猫／京东首月 ROI 可达 1.8–2.2；后续靠好评与直播矩阵提升复购率。
+          \item 线下铺货：单店投资约 30–50 万元，按月分销折扣 15\%，收款周期 60–90 天。
+          \item 社交电商：一次性直播带货可日销上万件，但客单价和复购率需通过社群维护来提升。
+        \end{itemize}
+      \item 渠道策略
+        \begin{itemize}
+          \item D2C＋经销商混合模式：初期主推自有官网和天猫旗舰店，建立品牌流量池；成熟后向优质线下经销商开放分销权限。
+          \item KPI 管理：电商平台以 GMV 和复购率为核心；线下以单店销售额和库存周转率为考核指标。
+        \end{itemize}
+    \end{itemize}
+
+
 \section{附件3：企业内部环境分析}
 \begin{itemize}
     \item \textbf{框架}：资源（人力、资金、技术）、能力（研发、生产、营销）、文化（团队协作、创新氛围）。
     \item \textbf{用途}：评估企业优劣势，明确核心竞争力。
 \end{itemize}
 
+  \subsubsection{一、资源（Resources）}
+    \begin{itemize}
+      \item 人力资源
+        \begin{itemize}
+          \item 核心团队：10 人，涵盖纺织材料、电子工程、嵌入式软件、AI 算法及市场运营等领域。  
+          \item 顾问与兼职：与中科院材料所、清华大学智能穿戴实验室签署产学研合作协议，定期提供技术和设计咨询。
+        \end{itemize}
+      \item 资金资源
+        \begin{itemize}
+          \item 天使轮融资：完成 300 万元人民币融资，用于样机开发和小批量试产。  
+          \item 政府与园区资助：获得高新区“智能制造专项” 100 万元扶持，经认定为高新技术企业，可享受研发费用加计扣除。
+        \end{itemize}
+      \item 技术资源
+        \begin{itemize}
+          \item 专利与标准：已申请“仿生温控纤维结构” 2 项发明专利、3 项实用新型，参与行业电加热服标准制定。  
+          \item 软硬件平台：自研温控算法平台、移动端 App 与云端管理后台；拥有柔性电路板、相变聚合物材料等核心模组样机。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{二、能力（Capabilities）}
+    \begin{itemize}
+      \item 研发能力
+        \begin{itemize}
+          \item 实验室与团队：拥有 200 平米材料与电子一体化实验室，固定研发人员 6 人，年度研发预算占营收 15\%。  
+          \item 迭代效率：从概念设计到首台样机平均周期 3 个月；采用敏捷开发、快速原型与用户测试闭环，版本迭代频次平均每季度一次。
+        \end{itemize}
+      \item 生产能力
+        \begin{itemize}
+          \item 代工合作：与华东一流功能性面料厂商和智能服饰代工厂建立长期战略合作，月产能可达 5\,000 件。  
+          \item 质量管理：通过 ISO9001 质量管理体系认证，具备样品测试、全检、抽检——返修闭环能力，次品率控制在 1\% 以下。
+        \end{itemize}
+      \item 营销能力
+        \begin{itemize}
+          \item 渠道运营：自建天猫、京东旗舰店及官网小程序，拥有 50\,000+ 粉丝；合作 30+ KOL/运动博主开展深度测评和直播带货。  
+          \item 品牌推广：每年投放线上广告 50 万元，通过社群运营、健康管理 App 联合活动，累计导流 20\,000 人次。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{三、文化（Culture）}
+    \begin{itemize}
+      \item 团队协作
+        \begin{itemize}
+          \item 扁平化管理：CEO 直线领导产品、技术、营销、运营四大部门，定期周会和跨部门工作坊，快速决策、快速响应。  
+          \item 开放式沟通：使用 Slack、飞书等工具保持全天候沟通，设立“创新提案箱”，鼓励员工提出改进与新功能建议。
+        \end{itemize}
+      \item 创新氛围
+        \begin{itemize}
+          \item 激励机制：员工持股计划（ESOP）、专利与论文奖励、季度创新奖金，推动技术与商业模式双轮驱动。  
+          \item 外部协同：定期举办“创客日”活动，邀请高校师生、行业专家、极地探险者等来访交流，持续拓展应用场景与技术边界。
+        \end{itemize}
+    \end{itemize}
+
+
 \section{附件4：行业分析工具——波特五力模型}
 \begin{itemize}
     \item \textbf{框架}：新进入者威胁、供应商议价能力、买家议价能力、替代品威胁、行业竞争。
     \item \textbf{用途}：分析行业竞争格局，发现机会和威胁。
+\end{itemize}
+
+  \subsubsection{一、新进入者威胁（Threat of New Entrants）}
+    \begin{itemize}
+      \item 障碍：专利与技术壁垒较高，需投入研发实验室与生产线；品牌信任与渠道铺设成本大。  
+      \item 阻力：现有企业已申请多项核心加热与温控专利；与大型面料商、电子元件商签订长期合同，进一步提高进入门槛。  
+      \item 结论：威胁中等偏低，但若资本充足或技术快速复制，新进入者仍可能突袭细分市场。
+    \end{itemize}
+
+  \subsubsection{二、供应商议价能力（Bargaining Power of Suppliers）}
+    \begin{itemize}
+      \item 材料端：功能性面料、相变材料、导电纤维等供应商集中，集中度高，议价能力强。  
+      \item 元器件端：高精度温度传感器与柔性电路板供应商数量有限，切换成本高。  
+      \item 应对策略：通过大批量采购、战略合作及联合研发锁定价格和产能；探索国内新兴供应商分散风险。  
+      \item 结论：供应商议价能力较强，需要主动构建稳定、差异化的供应链体系。
+    \end{itemize}
+
+  \subsubsection{三、买家议价能力（Bargaining Power of Buyers）}
+    \begin{itemize}
+      \item 消费者：市场上功能性服装品牌众多，信息透明度高，价格敏感度中等；高端用户更注重技术与品牌。  
+      \item 渠道商：大型电商平台与线下连锁拥有较强推广与议价能力，但因我方品牌尚处成长期，可与其分享流量与利润。  
+      \item 结论：总体买方议价能力中等，品牌差异化与体验式营销可抑制买方压价。
+    \end{itemize}
+
+  \subsubsection{四、替代品威胁（Threat of Substitutes）}
+    \begin{itemize}
+      \item 传统保暖服装：成本低、工艺成熟，但功能单一；对低端市场构成有限替代。  
+      \item 普通智能穿戴：智能手环、智能背心等非服饰类温控产品，可在一定场景满足监测或加热需求。  
+      \item 结论：替代品威胁中等，需通过产品集成度与多场景应用锁定用户粘性。
+    \end{itemize}
+
+  \subsubsection{五、行业竞争强度（Industry Rivalry）}
+    \begin{itemize}
+      \item 主要玩家：The North Face、Columbia、Arc’teryx 等国际大牌，本土小米生态链及若干初创企业。  
+      \item 竞争焦点：技术创新、渠道渗透、品牌塑造、价格战与用户体验。  
+      \item 结论：行业竞争激烈，唯有持续技术迭代与差异化定位方可脱颖而出。
+    \end{itemize}
+
+\subsubsection{六、综合机会与威胁}
+\begin{itemize}
+  \item 机会  
+    \begin{itemize}
+      \item 技术壁垒与专利保护为先发者创造先机。  
+      \item 健康管理与极端气候运动细分市场尚未饱和，可深耕高溢价领域。  
+      \item 跨界合作（健康 app、保险公司、户外俱乐部）助力品牌快速扩张。
+    \end{itemize}
+  \item 威胁  
+    \begin{itemize}
+      \item 低成本代工厂山寨与无序竞争可能扰乱市场秩序。  
+      \item 原材料及核心元件价格波动对成本控制带来挑战。  
+      \item 行业技术快速迭代，若研发跟进不足易被更先进方案替代。
+    \end{itemize}
 \end{itemize}
 
 \section{附件5：关键成功要素分析法}
@@ -1523,11 +1792,128 @@
     \item \textbf{用途}：明确企业成功所需的关键要素，评估现有能力。
 \end{itemize}
 
+  \subsubsection{一、技术创新（Technology Innovation）}
+    \begin{itemize}
+      \item 关键要素：持续材料与传感器工艺迭代，算法与云端 AI 模型优化，新技术专利储备。  
+      \item 现有能力评估：
+        \begin{itemize}
+          \item 已申请“仿生温控纤维结构”2 项发明专利、3 项实用新型；  
+          \item 拥有 200 平米产学研联合实验室，固定研发团队 6 人，年度研发投入占营收 15\%；  
+          \item 快速原型／敏捷迭代体系：3 个月完成首台样机，平均每季度上线新版本。
+        \end{itemize}
+      \item 差距与改进：
+        \begin{itemize}
+          \item 差距：高端纳米材料与柔性电子封装仍依赖外部供应，技术壁垒需进一步提高。  
+          \item 改进：拓展与高校／龙头化工企业联合研发，加大专项经费，推进至少 5 项核心专利布局。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{二、产品质量（Product Quality）}
+    \begin{itemize}
+      \item 关键要素：功能面料安全环保、电路与电池稳定性、整机防水防尘、出厂全检与长期可靠性测试。  
+      \item 现有能力评估：
+        \begin{itemize}
+          \item 已通过 ISO9001 质量管理体系认证，次品率 <1\%；  
+          \item 建立样品寿命测试、环境适应性测试及返修闭环流程；  
+          \item 与华东一流面料厂商和智能服饰代工厂签订长期质保协议。
+        \end{itemize}
+      \item 差距与改进：
+        \begin{itemize}
+          \item 差距：极端低温与高湿场景下的可靠性数据尚不完善；  
+          \item 改进：引入第三方权威检测机构做加速老化试验，新增 ≥ 1000 小时全循环测试，并建立快速反馈机制。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{三、品牌形象（Brand Image）}
+    \begin{itemize}
+      \item 关键要素：科技感与健康管理定位、主流媒体与 KOL 联动宣传、差异化视觉识别体系（VI）。  
+      \item 现有能力评估：
+        \begin{itemize}
+          \item 自建天猫/京东旗舰店及小程序，累计粉丝 50\,000+；  
+          \item 合作 30+ 知名户外／健康领域 KOL，上传深度评测视频与试用报告；  
+          \item 年度品牌推广预算 50 万元，已在微博、抖音、小红书投放目标广告。
+        \end{itemize}
+      \item 差距与改进：
+        \begin{itemize}
+          \item 差距：品牌在三四线及海外市场知名度有限；视觉识别需更统一与精细；  
+          \item 改进：设计专业化品牌手册，启动海外社交媒体本地化投放，分阶段打造旗舰体验店。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{四、分销渠道（Distribution Channel）}
+    \begin{itemize}
+      \item 关键要素：线上线下融合（O2O）、D2C＋优质经销商混合、社交电商与 B2B 健康管理机构合作。  
+      \item 现有能力评估：
+        \begin{itemize}
+          \item 电商平台 ROI 首月可达1.8–2.2，拥有自营与第三方仓配体系；  
+          \item 与迪卡侬、专业户外连锁签约 15 家线下体验店；  
+          \item 社交电商（拼多多、抖音）单次直播最高日销 5\,000 件，已与 5 家健身房／健康中心达成分销。
+        \end{itemize}
+      \item 差距与改进：
+        \begin{itemize}
+          \item 差距：线下网点布局仍集中于一二线城市，渠道深度与库存周转需优化；  
+          \item 改进：分阶段向三四线下沉，与本地户外俱乐部共建体验站；完善智能库存管理系统，提升周转率至 4 次／年。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{五、成本控制（Cost Control）}
+    \begin{itemize}
+      \item 关键要素：原材料与元器件议价、规模化生产降本、精益化制造与自动化检测、库存与现金流优化。  
+      \item 现有能力评估：
+        \begin{itemize}
+          \item 月产能 5\,000 件，批量采购可享 5\%–10\% 材料价优惠；  
+          \item 已在代工厂推行 5S 管理与全检／抽检流程；  
+          \item 与供应商签订长期框架协议，锁定 6 个月原材料价格。
+        \end{itemize}
+      \item 差距与改进：
+        \begin{itemize}
+          \item 差距：小批量生产时单位成本较高，库存资金占用率高达 20\%；  
+          \item 改进：引入 JIT（准时化）与 VMI（供应商管理库存）模式，推动自动化检测设备投产，力争一年内库存占用率降至 10\%。
+        \end{itemize}
+    \end{itemize}
+
+
 \section{附件6：环境综合分析——SWOT分析法}
 \begin{itemize}
     \item \textbf{框架}：优势（内部有利）、劣势（内部不利）、机会（外部有利）、威胁（外部不利）。
     \item \textbf{用途}：汇总环境分析结果，指导战略制定。
 \end{itemize}
+
+    \subsubsection{一、优势（Strengths）}
+    \begin{itemize}
+      \item 技术与专利壁垒：拥有“仿生温控纤维结构”2 项发明专利、3 项实用新型，主导行业标准制定。  
+      \item 敏捷研发与迭代：200 m²产学研联合实验室，固定研发团队6人，季度级迭代周期，算法＋材料协同创新。  
+      \item 完整软硬件平台：自研温控算法、移动 App、云端后台，柔性电路与相变材料核心模组样机。  
+      \item 多元化渠道布局：天猫/京东旗舰店＋官网小程序＋社交电商直播，线下覆盖迪卡侬等15家体验店，粉丝50 000＋。  
+      \item 品牌与合作：与30＋KOL/运动博主深度测评，产学研深度合作，政府、高新区专项资金扶持，高新技术企业认定。
+    \end{itemize}
+
+  \subsubsection{二、劣势（Weaknesses）}
+    \begin{itemize}
+      \item 供应链依赖：核心面料、纳米材料与高精度传感器高度集中于少数国际大厂，切换成本高。  
+      \item 规模效应不足：月产能5 000件，小批量生产单位成本及库存占用率偏高（约20\%）。  
+      \item 品牌渗透：在三四线及海外市场认知度有限，视觉识别体系与线下网点布局需进一步完善。  
+      \item 资金与现金流：天使轮300万＋政府资助100万，后续扩大产能与营销投入前现金流压力较大。  
+      \item 异地服务保障：线下体验店网络尚未覆盖，售后/维修及快速换新能力需加强。
+    \end{itemize}
+
+  \subsubsection{三、机会（Opportunities）}
+    \begin{itemize}
+      \item 市场需求升级：健康管理、自我监测理念盛行，中老年及慢病人群体温调节需求快速增长；后疫情户外运动回暖。  
+      \item 细分高溢价领域：极端气候运动、户外探险、医疗康养等高端场景尚未充分覆盖。  
+      \item 政策支持红利：“中国制造2025”“十四五”智能制造专项、高新技术企业研发费用加计扣除等。  
+      \item 跨界生态合作：与健康管理App、体检机构、保险公司、户外俱乐部的场景化＋服务化联合营销。  
+      \item 技术进步驱动：柔性电子、仿生面料、边缘AI算法持续革新，可进一步提升产品差异化优势。
+    \end{itemize}
+
+  \subsubsection{四、威胁（Threats）}
+    \begin{itemize}
+      \item 行业竞争加剧：国际大牌（The North Face、Columbia、Arc’teryx）与小米生态链等软硬件一体化玩家同场角逐。  
+      \item 替代品冲击：传统保暖服及智能手环、智能背心等非服饰温控产品对低端和部分场景形成替代。  
+      \item 原材料波动：国际贸易摩擦与原材料（钴、锂、高分子材料）价格波动带来成本不确定性。  
+      \item 法规与合规：个人健康数据隐私（GDPR、个人信息保护法）与产品安全环保法规日趋严格。  
+      \item 山寨与侵权：无资质代工厂抄袭外观及基本电路设计，易扰乱市场秩序并损害品牌美誉度。
+    \end{itemize}
 
 \section{附件7：市场细分标准（参考）}
 \begin{itemize}
@@ -1535,11 +1921,121 @@
     \item \textbf{用途}：划分目标市场，精准定位消费者。
 \end{itemize}
 
+  \subsubsection{一、按活动(Usage/Occasion)}  
+    \begin{itemize}
+      \item 户外极限：登山、滑雪、露营、高山徒步等极端环境下对温控性能要求最高。  
+      \item 运动健身：跑步、骑行、健身房、球类运动等中高强度运动时的快速温度调节需求。  
+      \item 日常通勤：城市通勤、校园生活、居家养生等轻度活动环境下的舒适性与智能互联需求。  
+    \end{itemize}
+
+  \subsubsection{二、按人群(Demographics)}  
+    \begin{itemize}
+      \item 年龄(Age)：  
+        \begin{itemize}
+          \item 18–25 岁：以学生与初入职场的年轻人为主，追求科技感与社交属性。  
+          \item 26–40 岁：中青年白领和户外爱好者，对功能性、品质和品牌认同度较高。  
+          \item 41–60 岁：中高端健康管理人群，关注温控精准度与长期舒适性。  
+          \item 60 岁以上：老年群体，重点需求为安全、健康监测与易用性。  
+        \end{itemize}
+      \item 收入(Income)：  
+        \begin{itemize}
+          \item 高收入(年收入 ¥30 万以上)：对高端定制化、多功能智能服装接受度高。  
+          \item 中等收入(¥10–30 万)：注重性价比及核心温控功能。  
+          \item 低收入(¥10 万以下)：价格敏感，倾向于基础款功能性保暖服。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{三、按地区(Geographic)}  
+    \begin{itemize}
+      \item 气候(Climate)：  
+        \begin{itemize}
+          \item 寒冷地区（东北、西藏、高原及东北亚等）：重视持续发热和抗冻性能。  
+          \item 温带地区（长三角、珠三角、华中等）：关注快速降温／保温切换与透气性。  
+          \item 热带／亚热带（华南、东南亚等）：主打轻薄散热与防晒温控双功能。  
+        \end{itemize}
+      \item 经济发展(Economic Tier)：  
+        \begin{itemize}
+          \item 一线城市（北京、上海、广州、深圳）：消费能力强，对新技术接受快、品牌忠诚度高。  
+          \item 强二线（杭州、成都、南京等）：增长迅速，线上购置与社交电商渗透率高。  
+          \item 三四线及以下：价格敏感度高，更青睐性价比和线下体验服务。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{四、细分组合示例(Target Segments)}  
+    \begin{itemize}
+      \item 核心目标：26–40 岁、年收入 ¥15–40 万、居住在一线／强二线寒冷或温带地区、户外／运动爱好者。  
+      \item 次级目标：41–60 岁、年收入 ¥10–30 万、中高端健康管理需求、居住在温带及寒冷地区。  
+      \item 潜力市场：18–25 岁、年收入 ¥5–15 万、追求科技时尚的学生及白领群体、主要分布于一线城市。  
+    \end{itemize}
+
 \section{附件8：市场定位方法（参考）}
 \begin{itemize}
     \item \textbf{框架}：基于属性（技术领先）、使用场景（多场景适用）、竞争者（差异化）。
     \item \textbf{用途}：塑造独特品牌形象，占据市场优势。
 \end{itemize}
+
+  \subsubsection{一、定位维度（三大框架）}
+    \begin{itemize}
+      \item 基于属性（Attributes）  
+        \begin{itemize}
+          \item 自主研发的“仿生温控纤维＋纳米发热片”双模温控技术，拥有多项发明专利。  
+          \item 边缘 AI 算法＋云端大数据分析，实现精度±0.1°C 的动态温控与能耗最优管控。  
+          \item 续航20 h以上，5 分钟速热，一键切换多档温度，兼顾舒适性与安全性。  
+        \end{itemize}
+
+      \item 基于使用场景（Usage Scenarios）  
+        \begin{itemize}
+          \item 户外极限：登山、滑雪、露营等低温环境，持续提供恒定暖感。  
+          \item 运动健身：跑步、骑行、健身房等中高强度运动时自动调节散热与保温。  
+          \item 日常通勤／居家：室内外温差大时，智能感知用户活动状态，低噪运行无感体验。  
+          \item 健康管理：中老年及慢病用户实现体温监测＋温控联动，兼具预警与康复辅助功能。  
+        \end{itemize}
+
+      \item 基于竞争者（Competitor Differentiation）  
+        \begin{itemize}
+          \item 与传统加热服：区别于单一“电阻丝加热”，提供“被动／主动双模温控＋智能算法”闭环。  
+          \item 与智能硬件厂商：区别于“可穿戴手环／背心”，整体集成于日常服饰，隐形便携，社交属性强。  
+          \item 与主流户外品牌：区别于“运动＋时尚”定位，强调“科技＋健康”双重价值，锁定中高端细分市场。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{二、核心定位宣言（Positioning Statement）}
+    \begin{quote}
+      “智御\underline{温控}，懂你随行”——面向追求极致舒适与健康管理的中高端用户，提供全场景适用、专利加持的智能温控服装，打造技术领先、差异化的穿戴体验。
+    \end{quote}
+
+  \subsubsection{三、品牌承诺要素（Brand Promise）}
+    \begin{itemize}
+      \item 核心承诺：\textbf{全天候精准温控}，让用户无惧冷热、随时随地保持最佳体感。  
+      \item 支撑理由：拥有行业领先的材料与算法专利，3 个月快速迭代、云端持续优化。  
+      \item 品牌个性：\textbf{科技温暖}，以数据与算法赋能，用心守护用户健康与舒适。  
+      \item 传播语调：专业、可信、温和，突出“智＋暖”双重情感连接。  
+    \end{itemize}
+
+  \subsubsection{四、执行路径（4P 简要）}
+    \begin{itemize}
+      \item 产品（Product）：  
+        \begin{itemize}
+          \item 四大场景专属模式（一键切换），App 自定义个性化温控曲线。  
+          \item 限量联名与定制款，增强品牌溢价与用户忠诚度。  
+        \end{itemize}
+      \item 价格（Price）：  
+        \begin{itemize}
+          \item 主推中高端定价（￥1\,200–2\,500），同时推出基础版（￥799）及增值服务包。  
+          \item 会员制订阅（固件升级＋健康报告＋专属客服），提升复购与附加收入。  
+        \end{itemize}
+      \item 渠道（Place）：  
+        \begin{itemize}
+          \item D2C 旗舰店＋天猫／京东旗舰；线下旗舰体验店；社交电商直播专场。  
+          \item 与高端健康管理机构、户外俱乐部、医疗康养中心达成 B2B 渠道合作。  
+        \end{itemize}
+      \item 促销（Promotion）：  
+        \begin{itemize}
+          \item KOL 深度体验＋健康专家背书视频；  
+          \item 主题快闪店＋互动体验活动；  
+          \item 会员推荐奖励＋节假日限时优惠。  
+        \end{itemize}
+    \end{itemize}
 
 \section{附件9：品牌策划内容——波士顿品牌要素模型（参考）}
 \begin{itemize}
@@ -1547,16 +2043,228 @@
     \item \textbf{用途}：设计品牌要素，增强市场认知。
 \end{itemize}
 
+  \subsubsection{一、品牌名称（Brand Name）}
+    \begin{itemize}
+      \item 中文：\textbf{“智御”}  
+      \item 英文：\textbf{ThermoGuard}  
+      \item 命名逻辑：“智”代表智能感知与算法驱动，“御”有掌控、守护之意，合二为一即“智能温控守护者”。
+    \end{itemize}
+
+  \subsubsection{二、标志（Brand Logo）}
+    \begin{itemize}
+      \item 造型：  
+        \begin{itemize}
+          \item 主图形为一对波浪形曲线，象征“动态温度波动”；  
+          \item 曲线中融入温度计／芯片元素，突出“智能+温控”双重属性。  
+        \end{itemize}
+      \item 配色：  
+        \begin{itemize}
+          \item 主色调为暖橙（\#FF6A00）——传达温暖与活力；  
+          \item 辅色冷灰（\#4A4A4A）——体现科技感与稳重。
+        \end{itemize}
+      \item 字体：   		
+        \begin{itemize}
+          \item 中文采用简洁的无衬线体，笔画微圆以柔和温暖；  
+          \item 英文选用现代感较强的几何无衬线，映衬品牌科技属性。
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{三、品牌故事（Brand Story）}
+    \begin{itemize}
+      \item 起源：  
+        \begin{itemize}
+          \item 团队源自中国科学院大学，历时两年研发“仿生温控纤维＋AI算法”双模温控系统。  
+          \item 样机曾随国内极地科考队征服南极内陆，验证续航与舒适性。  
+        \end{itemize}
+      \item 使命：\emph{“以科技温暖世界每一刻”}  
+      \item 愿景：成为“智慧温控服饰”领域的代名词，为户外探险、运动健身、居家健康等场景提供无感温暖体验。
+    \end{itemize}
+
+  \subsubsection{四、品牌个性（Brand Personality）}
+    \begin{itemize}
+      \item 智能（Intelligent）：算法与材料协同，实时自适应用户需求。  
+      \item 温暖（Warm）：科技之外，更有“关怀”与“陪伴”的情感属性。  
+      \item 稳定（Reliable）：严苛测试与质量管理，确保任何环境下都可依赖。  
+      \item 活力（Energetic）：主打户外与运动场景，鼓励用户拥抱自然与健康生活。
+    \end{itemize}
+
+  \subsubsection{五、传播方式（Brand Communication）}
+    \begin{itemize}
+      \item 社交媒体：  
+        \begin{itemize}
+          \item 抖音/快手：KOL 深度体验视频＋直播带货；  
+          \item 小红书/微博：长图文测评＋用户晒单；  
+          \item 微信／飞书社群：智能温控小课堂＋健康管理分享。  
+        \end{itemize}
+      \item 线下活动：  
+        \begin{itemize}
+          \item 主题快闪店：极寒与高温体验舱，现场沉浸式试穿；  
+          \item 户外露营／徒步赞助：与专业俱乐部、极地探险队联合推广。  
+        \end{itemize}
+      \item 品牌公关：  
+        \begin{itemize}
+          \item 媒体报道：科技与户外类权威媒体联动；  
+          \item 专家背书：邀请运动医学、康复医学专家对“温控+健康”进行科普。  
+        \end{itemize}
+      \item 数字化营销：  
+        \begin{itemize}
+          \item 精准投放：基于用户画像的程序化购买（DSP/RTB）；  
+          \item D2C 会员体系：定制化固件升级、增值健康报告、节假日专属优惠。
+        \end{itemize}
+    \end{itemize}
+
 \section{附件10：常用促销工具（参考）}
 \begin{itemize}
     \item \textbf{框架}：广告（线上、线下）、公关（媒体报道）、促销（折扣、赠品）、人员推销（展会）。
     \item \textbf{用途}：制定促销策略，提升销量。
 \end{itemize}
+  \subsubsection{一、广告（Advertising）}
+    \begin{itemize}
+      \item 线上广告  
+        \begin{itemize}
+          \item 程序化购买（DSP/RTB）：基于用户画像精准投放，优化 CPM/CPA；  
+          \item 社交平台投放：抖音／快手信息流广告、微信朋友圈定向推广；  
+          \item 搜索引擎营销（SEM）：关键词竞价、品牌词与功能词组合扩展。  
+        \end{itemize}
+      \item 线下广告  
+        \begin{itemize}
+          \item 户外大牌位：地铁站点、公交候车亭、商圈LED大屏；  
+          \item 户外运动场所：体育馆、滑雪场、攀岩馆等场地内灯箱及海报；  
+          \item 专业杂志刊例：户外与健康类期刊整版或跨页广告。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{二、公关（Public Relations）}
+    \begin{itemize}
+      \item 媒体报道  
+        \begin{itemize}
+          \item 发布新闻稿：在科技媒体（36Kr、虎嗅）、户外垂直媒体（户外探险）同步推送；  
+          \item 专题采访：邀请行业专家与创始人对话，讲述“仿生温控+AI”技术应用与用户故事；  
+        \end{itemize}
+      \item KOL／达人合作  
+        \begin{itemize}
+          \item 深度测评视频：与户外运动、大健康领域头部博主联合；  
+          \item 线上直播访谈：健康专家或运动教练现场互动答疑、试穿体验。  
+        \end{itemize}
+      \item 活动公关  
+        \begin{itemize}
+          \item 产品发布会：邀请媒体、行业协会、极地探险队等参加；  
+          \item CSR 项目：联合公益组织，开展“温暖行走”关爱老年人活动。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{三、促销（Sales Promotion）}
+    \begin{itemize}
+      \item 折扣与限时优惠  
+        \begin{itemize}
+          \item 节日／会员日折扣：双十一、双十二、618、品牌会员日设定 8–9 折；  
+          \item 新品首发价：前 1000 名下单享 20\% OFF，或赠送定制温感手套。  
+        \end{itemize}
+      \item 捆绑与赠品  
+        \begin{itemize}
+          \item 套装销售：智能温控服＋耳罩＋保温水壶打包价；  
+          \item 下单即送：App 专属固件升级＋一年延保卡／健康报告。  
+        \end{itemize}
+      \item 兑换／抽奖  
+        \begin{itemize}
+          \item 社群积分兑换：消费累计积分可换取周边或 VIP 服务；  
+          \item 活动抽奖：关注公众号并转发，抽取免费试用及品牌周边。  
+        \end{itemize}
+    \end{itemize}
+
+  \subsubsection{四、人员推销（Personal Selling）}
+    \begin{itemize}
+      \item 展会与路演  
+        \begin{itemize}
+          \item 行业展会：CES Asia、China Sports \& Outdoor、ISPO 等；  
+          \item 城市路演：商场／健身房快闪体验、极端气候体验舱。  
+        \end{itemize}
+      \item 渠道培训  
+        \begin{itemize}
+          \item 经销商／导购培训：产品功能、卖点、试穿流程及售后政策；  
+          \item B2B 商务拜访：与健康管理中心、医疗康养机构、企业福利部门对接。  
+        \end{itemize}
+      \item 体验营销  
+        \begin{itemize}
+          \item “体验日”活动：组织户外俱乐部成员现场试穿并收集反馈；  
+          \item 上门演示：为高端客户或机构提供定制化温控演示与健康方案建议。  
+        \end{itemize}
+    \end{itemize}
 
 \section{附件11：常见组织结构图——生产型企业（举例）}
 \begin{itemize}
     \item \textbf{框架}：CEO下设研发、运营、营销、财务、行政部门。
     \item \textbf{用途}：明确部门职能和协作方式。
 \end{itemize}
+
+% 如需使用 TikZ，请确保导言区已加载：
+% \usepackage{tikz}
+% \usetikzlibrary{positioning,shapes,arrows}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[
+            exec/.style={rectangle, draw, fill=blue!20,
+                                     minimum width=3.8cm, minimum height=1cm, align=center},
+            dept/.style={rectangle, draw, fill=green!20,
+                                     minimum width=3cm, minimum height=0.8cm, align=center},
+            level 1/.style={sibling distance=3cm, level distance=2cm},
+            grow=down,
+            edge from parent/.style={-{Latex}, thick},
+            edge from parent path={
+                (\tikzparentnode.south) -- (\tikzchildnode.north)
+            }
+        ]
+        \node[exec]{首席执行官\\CEO}
+            child { node[dept]{研发部} }
+            child { node[dept]{运营部} }
+            child { node[dept]{营销部} }
+            child { node[dept]{财务部} }
+            child { node[dept]{行政部} };
+    \end{tikzpicture}
+    \caption{生产型企业典型组织结构图}
+\end{figure}
+
+
+  \subsubsection{CEO（首席执行官）} 
+    \begin{itemize}
+      \item 统筹公司战略、技术路线、重大人事与重大投资决策；  
+      \item 协调各部门工作，向董事会或投资人汇报经营状况与发展规划。
+    \end{itemize}
+
+  \subsubsection{研发部（R\&D）}
+    \begin{itemize}
+      \item 产品规划与技术研发：材料、传感器、算法、软件平台等；  
+      \item 样机与试产：快速原型、迭代测试、专利申请与标准制定；  
+      \item 与运营、市场密切配合，收集客户反馈，持续优化产品。
+    \end{itemize}
+
+  \subsubsection{运营部（Operations）}
+    \begin{itemize}
+      \item 生产管理：代工厂、原材料采购、品质检验、成本控制；  
+      \item 供应链与物流：库存管理、仓储配送、订单跟踪；  
+      \item 与财务部协作，保障现金流与资金周转，支持规模化生产。
+    \end{itemize}
+
+  \subsubsection{营销部（Marketing）}
+    \begin{itemize}
+      \item 品牌与市场推广：广告、公关、社交媒体、KOL 合作；  
+      \item 渠道与销售：电商运营、线下体验店、B2B 合作与渠道维护；  
+      \item 与研发、运营部门对接，制定产品上市节奏与价格策略。
+    \end{itemize}
+
+  \subsubsection{财务部（Finance）}
+    \begin{itemize}
+      \item 会计核算与报表：成本、费用、利润核算，编制预算与月度/季度/年度财务报告；  
+      \item 资金管理：应收应付、现金流预测、税务筹划；  
+      \item 为各部门提供成本分析与绩效考核支持。
+    \end{itemize}
+
+  \subsubsection{行政部（Administration）}
+    \begin{itemize}
+      \item 人力资源管理：招聘、培训、绩效考核、员工关系；  
+      \item 行政后勤：办公场地、设备维护、安全环保、法律合规；  
+      \item 支撑公司文化建设与内部沟通，组织企业培训与团建活动。
+    \end{itemize}
 
 \end{document}
